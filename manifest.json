@@ -1,0 +1,16 @@
+{
+  "name": "Authyntic Defense",
+  "short_name": "Authyntic",
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#0b0c10",
+  "background_color": "#0b0c10",
+  "description": "Real-Time Provenance and Consensus Security",
+  "icons": [
+    {
+      "src": "favicon.ico",
+      "sizes": "64x64",
+      "type": "image/x-icon"
+    }
+  ]
+}
