@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Authyntic | Secure Operator Login</title>
+  <meta name="description" content="Restricted operator access portal for Authyntic's secure demonstration environment.">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' https://fonts.googleapis.com 'unsafe-inline'; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; script-src 'self'; connect-src 'self'; form-action 'self'; frame-ancestors 'none';">
+  <meta http-equiv="X-Frame-Options" content="DENY">
+  <meta http-equiv="Referrer-Policy" content="no-referrer">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="Permissions-Policy" content="geolocation=(), microphone=(), camera=()">
+  <meta name="csrf-token" content="">
+  <link rel="icon" href="../assets/favicon.ico">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Rajdhani:wght@500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css?v=1.3">
+  <noscript>
+    <style>
+      .requires-js { display: none !important; }
+      .no-js-warning { display: block; }
+    </style>
+  </noscript>
+</head>
+<body class="page login-page requires-js" data-login-page>
+  <div class="page__backdrop" aria-hidden="true"></div>
+  <header class="top-bar">
+    <a href="../index.html" class="logo">
+      <span class="logo__mark" aria-hidden="true">
+        <img src="../assets/blackonblackLogo.png" alt="Authyntic Logo" class="logo-image">
+      </span>
+      <div class="logo__info">
+        <span class="logo__title">AUTHYNTIC</span>
+        <span class="logo__tag">Defense Systems</span>
+      </div>
+    </a>
+    <button class="mobile-menu-toggle" aria-label="Toggle menu" aria-expanded="false">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </button>
+    <nav class="primary-nav" aria-label="Main Navigation">
+      <a href="../index.html">Home</a>
+      <a href="solutions.html">Solutions</a>
+      <a href="technology.html">Technology</a>
+      <a href="capabilities.html">Capabilities</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <a href="login.html" class="nav-auth-link active" data-auth="login">Login</a>
+      <button type="button" class="nav-auth-link nav-auth-link--logout" data-auth="logout" hidden>Logout</button>
+    </nav>
+    <div class="auth-indicator" data-auth-status hidden>
+      <span class="auth-indicator__label">Operator</span>
+      <span class="auth-indicator__value" data-auth-user>Guest</span>
+    </div>
+    <a class="cta-link" href="contact.html">Request Information</a>
+  </header>
+
+  <div class="no-js-warning" role="alert" aria-live="assertive">
+    JavaScript is required to sign in to the Authyntic demo environment. Please enable JavaScript and reload this page.
+  </div>
+
+  <main class="login-main" aria-labelledby="login-title">
+    <section class="auth-wrapper" data-auth-wrapper>
+      <div class="auth-card" role="form">
+        <header class="auth-card__header">
+          <p class="eyebrow">Restricted Access</p>
+          <h1 id="login-title">Secure Operator Login</h1>
+          <p class="auth-card__subtitle">Mission demo access is limited to authorized Authyntic operators.</p>
+        </header>
+
+        <div class="alert alert--info" data-auth-flash hidden role="status" aria-live="polite"></div>
+        <div class="alert alert--error" data-auth-error hidden role="alert" aria-live="assertive"></div>
+        <div class="alert alert--warning" data-auth-rate hidden role="alert" aria-live="assertive"></div>
+
+        <form id="login-form" class="auth-form" method="post" autocomplete="off" novalidate>
+          <div class="input-group">
+            <label for="username">Operator ID</label>
+            <input type="text" id="username" name="username" inputmode="text" autocomplete="username" required placeholder="Enter authorized username">
+          </div>
+          <div class="input-group">
+            <label for="password">Access Phrase</label>
+            <input type="password" id="password" name="password" autocomplete="current-password" required placeholder="Enter secure phrase">
+          </div>
+          <input type="hidden" name="csrf_token" id="csrf_token" value="">
+          <button type="submit" class="btn btn--primary">Sign In</button>
+        </form>
+
+        <footer class="auth-card__footer">
+          <p>Need support? <a href="mailto:security@authynticdefense.com">security@authynticdefense.com</a></p>
+          <p class="session-hint" data-session-indicator hidden>Active session detected. <a href="#" data-auth="logout">Sign out</a> before proceeding.</p>
+        </footer>
+      </div>
+    </section>
+  </main>
+
+  <script src="../js/auth.js" defer></script>
+  <script src="../js/main.js" defer></script>
+</body>
+</html>

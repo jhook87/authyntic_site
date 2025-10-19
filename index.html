@@ -13,7 +13,7 @@
   <meta property="og:url" content="https://www.authynticdefense.com">
   <link rel="manifest" href="manifest.json">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Rajdhani:wght@500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=1.2">
+  <link rel="stylesheet" href="css/style.css?v=1.3">
 </head>
 <body class="page">
   <div class="page__backdrop" aria-hidden="true"></div>
@@ -39,7 +39,13 @@
       <a href="pages/capabilities.html">Capabilities</a>
       <a href="pages/about.html">About</a>
       <a href="pages/contact.html">Contact</a>
+      <a href="pages/login.html" class="nav-auth-link" data-auth="login">Login</a>
+      <button type="button" class="nav-auth-link nav-auth-link--logout" data-auth="logout" hidden>Logout</button>
     </nav>
+    <div class="auth-indicator" data-auth-status hidden>
+      <span class="auth-indicator__label">Operator</span>
+      <span class="auth-indicator__value" data-auth-user>Guest</span>
+    </div>
     <a class="cta-link" href="pages/contact.html">Request Information</a>
   </header>
 
@@ -58,6 +64,7 @@
             <div class="hero__actions">
               <a href="pages/solutions.html" class="btn btn--primary">Explore the Platform</a>
               <a href="pages/contact.html" class="btn btn--secondary">Schedule a Technical Brief</a>
+              <a href="pages/solutions.html#demo" class="btn btn--ghost" data-requires-auth="true" data-auth-message="Secure demo access requires an authorized Authyntic operator login.">Access Secure Demo</a>
             </div>
             <div class="hero__stats">
               <div class="stat-item">
@@ -316,6 +323,7 @@
       <p class="footer-compliance">ITAR Registered | NIST Compliant | ISO 27001 Certified</p>
     </div>
   </footer>
+  <script src="js/auth.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>
