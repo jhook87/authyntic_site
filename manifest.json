@@ -3,8 +3,8 @@
   "short_name": "Authyntic",
   "start_url": "/",
   "display": "standalone",
-  "theme_color": "#0b0c10",
-  "background_color": "#0b0c10",
+  "theme_color": "#0D1117",
+  "background_color": "#0D1117",
   "description": "Real-Time Provenance and Consensus Security",
   "icons": [
     {
