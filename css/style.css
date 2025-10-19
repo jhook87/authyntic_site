@@ -80,6 +80,7 @@ html {
 
 body {
   margin: 0;
+  padding: 0;
   font-family: var(--font-sans);
   background: 
     /* Circuit-like patterns */
@@ -88,6 +89,7 @@ body {
     radial-gradient(circle at 10% 10%, rgba(0, 227, 150, 0.08), transparent 55%),
     radial-gradient(circle at 85% 15%, rgba(255, 69, 96, 0.08), transparent 50%),
     linear-gradient(160deg, #05070c 0%, #0d1117 55%, #05070c 100%);
+  background-attachment: fixed;
   color: var(--color-text);
   min-height: 100vh;
   letter-spacing: 0.01em;
@@ -98,6 +100,7 @@ body {
 .page {
   position: relative;
   overflow-x: hidden;
+  min-height: 100vh;
 }
 
 .page__backdrop {
@@ -105,13 +108,17 @@ body {
   inset: 0;
   pointer-events: none;
   background:
-    url('assets/Authyntic%20Faded%20Red.png') right top no-repeat,
+    url('../assets/Authyntic%20Faded%20Red.png') right top no-repeat,
     radial-gradient(circle at 10% 20%, rgba(0, 227, 150, 0.16), transparent 55%),
     radial-gradient(circle at 85% 12%, rgba(255, 69, 96, 0.12), transparent 50%),
     radial-gradient(circle at 60% 80%, rgba(0, 227, 150, 0.1), transparent 65%);
   background-size: 60% auto, cover, cover, cover;
   opacity: 0.9;
-  z-index: -2;
+  z-index: -1;
+  height: 100vh;
+  width: 100vw;
+  top: 0;
+  left: 0;
 }
 
 .page__backdrop::after {
@@ -129,6 +136,12 @@ body {
 .container {
   width: var(--container-width);
   margin: 0 auto;
+  padding: 0 var(--space-4);
+}
+
+main {
+  position: relative;
+  z-index: 1;
 }
 
 a {
@@ -496,6 +509,7 @@ p {
 .hero {
   position: relative;
   isolation: isolate;
+  padding: clamp(80px, 12vw, 120px) 0 clamp(60px, 10vw, 100px);
 }
 
 .preview-card {
@@ -505,7 +519,6 @@ p {
   background: linear-gradient(160deg, rgba(13, 17, 23, 0.92), rgba(26, 34, 44, 0.86));
   border: 1px solid rgba(0, 227, 150, 0.25);
   box-shadow: 0 38px 80px rgba(13, 17, 23, 0.75), 0 0 40px rgba(0, 227, 150, 0.18);
-  padding: clamp(96px, 16vw, 140px) 0 clamp(80px, 12vw, 120px);
 }
 
 .hero::after {
