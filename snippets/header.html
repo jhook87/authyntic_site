@@ -1,0 +1,33 @@
+<!-- Shared Authyntic site header snippet -->
+<!-- Replace {{BASE}} with the relative path prefix from the current page ("" for root pages, "../" for pages inside /pages). -->
+<header class="top-bar">
+  <a href="{{BASE}}index.html" class="logo">
+    <span class="logo__mark" aria-hidden="true">
+      <img src="{{BASE}}assets/blackonblackLogo.png" alt="Authyntic Logo" class="logo-image">
+    </span>
+    <div class="logo__info">
+      <span class="logo__title">AUTHYNTIC</span>
+      <span class="logo__tag">Defense Systems</span>
+    </div>
+  </a>
+  <button class="mobile-menu-toggle" aria-label="Toggle menu" aria-expanded="false">
+    <span class="bar"></span>
+    <span class="bar"></span>
+    <span class="bar"></span>
+  </button>
+  <nav class="primary-nav" aria-label="Main Navigation">
+    <a href="{{BASE}}index.html">Home</a>
+    <a href="{{BASE}}pages/solutions.html">Solutions</a>
+    <a href="{{BASE}}pages/technology.html">Technology</a>
+    <a href="{{BASE}}pages/capabilities.html">Capabilities</a>
+    <a href="{{BASE}}pages/about.html">About</a>
+    <a href="{{BASE}}pages/contact.html">Contact</a>
+    <a href="{{BASE}}pages/login.html" class="nav-auth-link" data-auth="login">Login</a>
+    <button type="button" class="nav-auth-link nav-auth-link--logout" data-auth="logout" hidden>Logout</button>
+  </nav>
+  <div class="auth-indicator" data-auth-status hidden>
+    <span class="auth-indicator__label">Operator</span>
+    <span class="auth-indicator__value" data-auth-user>Guest</span>
+  </div>
+  <a class="cta-link" href="{{BASE}}pages/contact.html">Request Information</a>
+</header>
