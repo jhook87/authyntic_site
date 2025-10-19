@@ -1278,7 +1278,11 @@ p {
 }
 
 .auth-form input[type="text"],
-.auth-form input[type="password"] {
+.auth-form input[type="password"],
+.auth-form input[type="email"],
+.auth-form input[type="tel"],
+.auth-form select,
+.auth-form textarea {
   width: 100%;
   padding: var(--space-3) var(--space-4);
   border-radius: var(--radius-sm);
@@ -1290,11 +1294,30 @@ p {
 }
 
 .auth-form input[type="text"]:focus,
-.auth-form input[type="password"]:focus {
+.auth-form input[type="password"]:focus,
+.auth-form input[type="email"]:focus,
+.auth-form input[type="tel"]:focus,
+.auth-form select:focus,
+.auth-form textarea:focus {
   outline: none;
   border-color: rgba(60, 243, 193, 0.65);
   box-shadow: 0 0 0 3px rgba(60, 243, 193, 0.22);
   background: rgba(6, 14, 28, 0.92);
+}
+
+.auth-form textarea {
+  min-height: 140px;
+  resize: vertical;
+}
+
+.auth-form select {
+  appearance: none;
+  background-image: linear-gradient(45deg, transparent 50%, rgba(139, 148, 158, 0.6) 50%),
+    linear-gradient(135deg, rgba(139, 148, 158, 0.6) 50%, transparent 50%);
+  background-position: calc(100% - 24px) calc(50% - 4px), calc(100% - 18px) calc(50% - 4px);
+  background-size: 6px 6px, 6px 6px;
+  background-repeat: no-repeat;
+  padding-right: 48px;
 }
 
 .auth-form .btn {
