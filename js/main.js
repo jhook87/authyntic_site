@@ -1,59 +1,53 @@
-
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', () => {
   const counters = document.querySelectorAll('.counter');
-  const bars = document.querySelectorAll('.bar-fill');
-  const reveals = document.querySelectorAll('.reveal');
+  const nav = document.getElementById('primary-nav');
+  const toggle = document.querySelector('.menu-toggle');
 
-  const options = { threshold: 0.4 };
+  if (toggle && nav) {
+    toggle.addEventListener('click', () => {
+      const isOpen = toggle.getAttribute('aria-expanded') === 'true';
+      toggle.setAttribute('aria-expanded', String(!isOpen));
+      toggle.classList.toggle('is-open');
+      nav.classList.toggle('is-open');
+    });
 
-  const counterObserver = new IntersectionObserver(function(entries, observer) {
-    entries.forEach(entry => {
-      if(entry.isIntersecting) {
-        const el = entry.target;
-        const target = parseFloat(el.getAttribute('data-count'));
-        let current = 0;
-        const duration = 2000;
-        const stepTime = 20;
-        const steps = duration / stepTime;
-        const increment = target / steps;
-        function updateCounter() {
-          current += increment;
-          if(current >= target) {
-            el.textContent = Number.isInteger(target) ? target.toLocaleString() : target.toFixed(1);
-          } else {
-            el.textContent = Number.isInteger(target) ? Math.floor(current).toLocaleString() : current.toFixed(1);
-            requestAnimationFrame(updateCounter);
-          }
+    nav.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        if (nav.classList.contains('is-open')) {
+          toggle.click();
         }
-        updateCounter();
-        observer.unobserve(el);
-      }
+      });
     });
-  }, options);
+  }
 
-  counters.forEach(counter => counterObserver.observe(counter));
+  if (counters.length) {
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const el = entry.target;
+          const target = parseFloat(el.getAttribute('data-count'));
+          const isDecimal = !Number.isInteger(target);
+          const duration = 2000;
+          const steps = 60;
+          let current = 0;
+          const increment = target / steps;
 
-  const barObserver = new IntersectionObserver(function(entries, observer) {
-    entries.forEach(entry => {
-      if(entry.isIntersecting) {
-        const el = entry.target;
-        const percent = el.getAttribute('data-percent');
-        el.style.width = percent + '%';
-        observer.unobserve(el);
-      }
-    });
-  }, options);
+          const update = () => {
+            current += increment;
+            if (current >= target) {
+              el.textContent = isDecimal ? target.toFixed(2) : Math.round(target).toLocaleString();
+              observer.unobserve(el);
+              return;
+            }
+            el.textContent = isDecimal ? current.toFixed(2) : Math.round(current).toLocaleString();
+            requestAnimationFrame(update);
+          };
 
-  bars.forEach(bar => barObserver.observe(bar));
+          requestAnimationFrame(update);
+        }
+      });
+    }, { threshold: 0.5 });
 
-  const revealObserver = new IntersectionObserver(function(entries, observer) {
-    entries.forEach(entry => {
-      if(entry.isIntersecting) {
-        entry.target.classList.add('active');
-        observer.unobserve(entry.target);
-      }
-    });
-  }, options);
-
-  reveals.forEach(el => revealObserver.observe(el));
+    counters.forEach(counter => observer.observe(counter));
+  }
 });
