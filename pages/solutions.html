@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="../css/style.css?v=1.2">
     <link rel="icon" href="../assets/favicon.ico" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Rajdhani:wght@500;600&display=swap" rel="stylesheet">
-    <script src="../js/main.js" defer></script>
 </head>
 <body class="page">
     <div class="page__backdrop" aria-hidden="true"></div>
@@ -23,22 +22,25 @@
                 <span class="logo__tag">Defense Systems</span>
             </div>
         </a>
-        
         <button class="mobile-menu-toggle" aria-label="Toggle menu" aria-expanded="false">
             <span class="bar"></span>
             <span class="bar"></span>
             <span class="bar"></span>
         </button>
-
         <nav class="primary-nav" aria-label="Main Navigation">
             <a href="../index.html">Home</a>
             <a href="solutions.html" class="active">Solutions</a>
             <a href="technology.html">Technology</a>
             <a href="capabilities.html">Capabilities</a>
-            <a href="use-cases.html">Use Cases</a>
             <a href="about.html">About</a>
             <a href="contact.html">Contact</a>
+            <a href="login.html" class="nav-auth-link" data-auth="login">Login</a>
+            <button type="button" class="nav-auth-link nav-auth-link--logout" data-auth="logout" hidden>Logout</button>
         </nav>
+        <div class="auth-indicator" data-auth-status hidden>
+            <span class="auth-indicator__label">Operator</span>
+            <span class="auth-indicator__value" data-auth-user>Guest</span>
+        </div>
         <a class="cta-link" href="contact.html">Request Information</a>
     </header>
 
@@ -217,5 +219,7 @@
             </div>
         </div>
     </footer>
+    <script src="../js/auth.js"></script>
+    <script src="../js/main.js"></script>
 </body>
 </html>
