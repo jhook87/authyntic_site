@@ -1,5 +1,58 @@
 
 document.addEventListener('DOMContentLoaded', function() {
+  // Mobile menu functionality
+  const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+  const primaryNav = document.querySelector('.primary-nav');
+  
+  if (mobileMenuToggle && primaryNav) {
+    mobileMenuToggle.addEventListener('click', function(e) {
+      e.stopPropagation();
+      const expanded = this.getAttribute('aria-expanded') === 'true' || false;
+      this.setAttribute('aria-expanded', !expanded);
+      primaryNav.classList.toggle('active');
+      
+      // Close menu when clicking outside
+      if (!expanded) {
+        setTimeout(() => {
+          document.addEventListener('click', closeMenuOutside);
+        }, 10);
+      } else {
+        document.removeEventListener('click', closeMenuOutside);
+      }
+    });
+    
+    // Prevent clicks inside the nav from closing the menu
+    primaryNav.addEventListener('click', function(e) {
+      e.stopPropagation();
+    });
+    
+    // Close menu when clicking on nav links
+    const navLinks = primaryNav.querySelectorAll('a');
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenuToggle.setAttribute('aria-expanded', 'false');
+        primaryNav.classList.remove('active');
+      });
+    });
+    
+    // Close menu on window resize if width is greater than mobile breakpoint
+    window.addEventListener('resize', function() {
+      if (window.innerWidth > 920) {
+        mobileMenuToggle.setAttribute('aria-expanded', 'false');
+        primaryNav.classList.remove('active');
+        document.removeEventListener('click', closeMenuOutside);
+      }
+    });
+  }
+  
+  function closeMenuOutside(event) {
+    if (!primaryNav.contains(event.target) && !mobileMenuToggle.contains(event.target)) {
+      mobileMenuToggle.setAttribute('aria-expanded', 'false');
+      primaryNav.classList.remove('active');
+      document.removeEventListener('click', closeMenuOutside);
+    }
+  }
+  
   const counters = document.querySelectorAll('.counter');
   const bars = document.querySelectorAll('.bar-fill');
   const reveals = document.querySelectorAll('.reveal');

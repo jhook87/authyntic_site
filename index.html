@@ -3,268 +3,306 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Authyntic | Authenticity for the Digital Battlespace</title>
-  <meta name="description" content="Authyntic delivers authenticity for the digital battlespace with real-time media verification, consensus scoring, and integrated operator workflows.">
+  <title>Authyntic | Digital Media Authentication & Verification Systems</title>
+  <meta name="description" content="Advanced digital media authentication and verification systems for defense and intelligence operations. Real-time content provenance, cryptographic validation, and threat intelligence integration.">
   <link rel="icon" href="assets/favicon.ico">
-  <meta property="og:title" content="Authyntic | Authenticity for the Digital Battlespace">
-  <meta property="og:description" content="Authyntic delivers authenticity for the digital battlespace with real-time media verification, consensus scoring, and integrated operator workflows.">
+  <meta property="og:title" content="Authyntic | Digital Media Authentication Systems">
+  <meta property="og:description" content="Advanced digital media authentication and verification systems for defense and intelligence operations.">
   <meta property="og:image" content="assets/hero-bg.png">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://www.authynticdefense.com">
   <link rel="manifest" href="manifest.json">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/style.css?v=1019202502">
 </head>
-<body>
+<body class="page">
+  <div class="page__backdrop" aria-hidden="true"></div>
   <header class="top-bar">
-    <a href="#" class="logo">
+    <a href="index.html" class="logo">
       <span class="logo__mark" aria-hidden="true">
         <img src="assets/blackonblackLogo.png" alt="Authyntic Logo" class="logo-image">
       </span>
       <div class="logo__info">
         <span class="logo__title">AUTHYNTIC</span>
-        <span class="logo__tag">Strategic Control</span>
+        <span class="logo__tag">Defense Systems</span>
       </div>
     </a>
+    <button class="mobile-menu-toggle" aria-label="Toggle menu" aria-expanded="false">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </button>
     <nav class="primary-nav" aria-label="Main Navigation">
-      <a href="#mission">Mission</a>
-      <a href="#console">Console</a>
-      <a href="#technology">Pillars</a>
-      <a href="#usecases">Use Cases</a>
-      <a href="#intel">Intel</a>
-      <a href="#contact">Engage</a>
+      <a href="index.html" class="active">Home</a>
+      <a href="pages/solutions.html">Solutions</a>
+      <a href="pages/technology.html">Technology</a>
+      <a href="pages/capabilities.html">Capabilities</a>
+      <a href="pages/about.html">About</a>
+      <a href="pages/contact.html">Contact</a>
     </nav>
-    <a class="cta-link" href="#contact">Connect</a>
+    <a class="cta-link" href="pages/contact.html">Request Information</a>
   </header>
 
   <main>
-    <section id="mission" class="hero">
+    <section id="overview" class="hero">
       <div class="hero__grid">
         <div class="hero__content">
-          <p class="eyebrow">Authyntic Strategic Control</p>
-          <h1>Authenticity for the Digital Battlespace</h1>
-          <p class="hero__lead">Authyntic unifies source verification, consensus scoring, and operator workflows into a resilient command environment that keeps decision makers aligned before anything ships.</p>
+          <p class="eyebrow">Digital Media Authentication</p>
+          <h1 class="hero__title">
+            Advanced Verification Systems for Critical Operations
+          </h1>
+          <p class="hero__description">
+            Authyntic provides cryptographic authentication and real-time verification of digital media for defense, intelligence, and law enforcement operations. Our systems validate content provenance, detect manipulation, and ensure chain of custody for evidentiary and operational use.
+          </p>
           <div class="hero__actions">
-            <a href="#console" class="btn btn--primary">Explore the console</a>
-            <a href="#technology" class="btn btn--ghost">View the pillars</a>
+            <a href="pages/solutions.html" class="btn btn--primary">View Solutions</a>
+            <a href="pages/contact.html" class="btn btn--secondary">Request Briefing</a>
           </div>
-          <dl class="hero__stats">
-            <div>
-              <dt>Global partners</dt>
-              <dd class="counter" data-count="68">0</dd>
+          <div class="hero__stats">
+            <div class="stat-item">
+              <div class="stat-value"><span class="counter" data-count="99.8">0</span>%</div>
+              <div class="stat-label">Detection Accuracy</div>
             </div>
-            <div>
-              <dt>Signal reviews</dt>
-              <dd class="counter" data-count="425">0</dd>
+            <div class="stat-item">
+              <div class="stat-value">&lt;<span class="counter" data-count="50">0</span>ms</div>
+              <div class="stat-label">Verification Latency</div>
             </div>
-            <div>
-              <dt>Confidence uptime</dt>
-              <dd><span class="counter" data-count="99.99">0</span><span class="unit">%</span></dd>
+            <div class="stat-item">
+              <div class="stat-value"><span class="counter" data-count="256">0</span>-bit</div>
+              <div class="stat-label">Cryptographic Standard</div>
             </div>
-          </dl>
+          </div>
         </div>
-        <aside class="hero__preview" aria-label="Authyntic console preview">
+        <div class="hero__preview">
           <div class="preview-card">
-            <header>
-            <span>Integrity control loop</span>
-            <span class="pill">In sync</span>
-            </header>
+            <div class="preview-header">
+              <span class="preview-badge preview-badge--verified">VERIFIED</span>
+              <span class="preview-time">Real-time Analysis</span>
+            </div>
             <div class="hero-image">
-              <img src="assets/HeroImage.png" alt="Authyntic Dashboard Preview" class="hero-preview-image">
+              <img src="assets/HeroImage.png" alt="Authyntic Verification Console" loading="lazy">
             </div>
-            <div class="preview-grid">
-              <article>
-                <h3>Integrity posture</h3>
-                <p>Verification coverage active across priority regions with <strong>0</strong> pending disputes.</p>
-              </article>
-              <article>
-                <h3>Signal review</h3>
-                <p>Automations have resolved <strong>42</strong> questionable assets in the past hour.</p>
-              </article>
-              <article>
-                <h3>Proof anchors</h3>
-                <p>Independent attestations distributed across redundant trust registries.</p>
-              </article>
+            <div class="preview-body">
+              <h3 class="preview-title">Content Authentication</h3>
+              <div class="preview-metrics">
+                <div class="metric">
+                  <span class="metric-label">Authenticity Score</span>
+                  <div class="metric-bar">
+                    <div class="bar-fill" data-percent="98" style="width: 0%"></div>
+                  </div>
+                  <span class="metric-value">98%</span>
+                </div>
+                <div class="metric">
+                  <span class="metric-label">Chain of Custody</span>
+                  <div class="metric-bar">
+                    <div class="bar-fill" data-percent="100" style="width: 0%"></div>
+                  </div>
+                  <span class="metric-value">Verified</span>
+                </div>
+              </div>
+              <div class="preview-footer">
+                <span class="preview-label">Cryptographic Hash</span>
+                <code class="preview-hash">SHA-256: a3f5...9c2e</code>
+              </div>
             </div>
           </div>
-        </aside>
+        </div>
       </div>
     </section>
 
-    <section id="console" class="section console">
+    <section id="capabilities" class="section">
       <div class="section__header">
-        <h2>Authyntic strategic console</h2>
-        <p>Real-time visibility designed for teams that cannot compromise on authenticity.</p>
+        <h2>Core Capabilities</h2>
+        <p>Comprehensive digital media authentication for mission-critical operations.</p>
       </div>
-      <div class="console__grid">
-        <article class="module-card reveal">
-          <header>
-            <span class="module-title">Signal assurance</span>
-            <span class="module-value">42.2<span class="unit">%</span></span>
-          </header>
-          <p>The live trust index blends automated scoring, lineage confidence, and analyst confirmations.</p>
-          <div class="gauge">
-            <span style="--value: 42.2"></span>
+      <div class="capabilities__grid">
+        <article class="capability-card reveal">
+          <div class="capability-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            </svg>
           </div>
+          <h3>Cryptographic Validation</h3>
+          <p>
+            SHA-256 and HMAC-based authentication of digital media with blockchain-anchored provenance tracking. Immutable audit trails ensure evidential integrity for legal and operational use.
+          </p>
         </article>
-
-        <article class="module-card reveal">
-          <header>
-            <span class="module-title">Network posture</span>
-            <span class="pill pill--cyan">Stable</span>
-          </header>
-          <ul class="node-list">
-            <li><span>Ingress gateways</span><span>12 active</span></li>
-            <li><span>Verification nodes</span><span>256</span></li>
-            <li><span>Signal observers</span><span>1,024</span></li>
-            <li><span>Edge relays</span><span>44</span></li>
-          </ul>
-          <p class="module-foot">Autonomous failover engages whenever local performance drops below policy thresholds.</p>
+        <article class="capability-card reveal">
+          <div class="capability-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+            </svg>
+          </div>
+          <h3>Manipulation Detection</h3>
+          <p>
+            Advanced algorithms identify digital alterations, deepfakes, and synthetic media. Multi-spectrum analysis detects compression artifacts, inconsistencies, and adversarial perturbations.
+          </p>
         </article>
-
-        <article class="module-card reveal">
-          <header>
-            <span class="module-title">Trust lattice</span>
-            <span class="pill pill--accent">Audited</span>
-          </header>
-          <div class="bar-group">
-            <span>Global integrity</span>
-            <div class="bar-track"><span class="bar-fill" data-percent="92"></span></div>
+        <article class="capability-card reveal">
+          <div class="capability-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 2v20M2 12h20"/>
+              <circle cx="12" cy="12" r="10"/>
+            </svg>
           </div>
-          <div class="bar-group">
-            <span>Editorial confidence</span>
-            <div class="bar-track"><span class="bar-fill" data-percent="88"></span></div>
-          </div>
-          <div class="bar-group">
-            <span>Distribution reliability</span>
-            <div class="bar-track"><span class="bar-fill" data-percent="86"></span></div>
-          </div>
+          <h3>Real-Time Processing</h3>
+          <p>
+            Sub-50ms verification latency for operational environments. Distributed architecture scales to process thousands of media files simultaneously with consistent performance.
+          </p>
         </article>
-
-        <article class="module-card reveal">
-          <header>
-            <span class="module-title">Integrity feed</span>
-            <span class="pill pill--pulse">Streaming</span>
-          </header>
-          <ul class="mission-feed">
-            <li>
-              <h3>Questionable asset quarantined</h3>
-              <p>Flagged media removed from circulation within <strong>1.1s</strong> of detection.</p>
-              <time dateTime="2025-10-09T18:05:28Z">18:05 • 09 OCT 2025</time>
-            </li>
-            <li>
-              <h3>Credential anomaly resolved</h3>
-              <p>Automated policy restored downstream trust scoring with zero downtime.</p>
-              <time dateTime="2025-10-09T17:56:12Z">17:56 • 09 OCT 2025</time>
-            </li>
-            <li>
-              <h3>Live broadcast validated</h3>
-              <p>Real-time feed verified against multi-source attestations. No anomalies detected.</p>
-              <time dateTime="2025-10-09T17:41:08Z">17:41 • 09 OCT 2025</time>
-            </li>
-          </ul>
+        <article class="capability-card reveal">
+          <div class="capability-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+              <polyline points="9 22 9 12 15 12 15 22"/>
+            </svg>
+          </div>
+          <h3>Chain of Custody</h3>
+          <p>
+            Complete metadata preservation and tamper-evident logging. Every access, modification, and transfer is cryptographically signed and recorded for forensic accountability.
+          </p>
         </article>
       </div>
     </section>
 
-    <section id="technology" class="section technology">
+    <section id="technology" class="section section--contrast">
       <div class="section__header">
-        <h2>Platform pillars</h2>
-        <p>A streamlined architecture that brings structure, speed, and transparency to your media operations.</p>
+        <h2>Technology Foundation</h2>
+        <p>Military-grade authentication built on proven cryptographic standards and distributed systems architecture.</p>
       </div>
       <div class="tech__grid">
         <article class="tech-card reveal">
-          <h3>Integrity pipeline</h3>
-          <p>Links every asset to its origin for tamper-evident lineage and unified audit history.</p>
+          <h3>Cryptographic Integrity</h3>
+          <p>
+            SHA-256 hashing with HMAC authentication. AES-256 encryption for data at rest and in transit. Digital signatures using ECDSA with P-256 curves for non-repudiation.
+          </p>
         </article>
         <article class="tech-card reveal">
-          <h3>Distributed attestations</h3>
-          <p>Anchors trust data across independent registries to preserve continuity and resilience.</p>
+          <h3>Distributed Architecture</h3>
+          <p>
+            Horizontally scalable verification nodes with automatic failover. Geographic distribution ensures <99.99% uptime with sub-regional latency optimization.
+          </p>
         </article>
         <article class="tech-card reveal">
-          <h3>Signal fusion</h3>
-          <p>Combines automated scoring with operator validation and device telemetry for balanced confidence.</p>
+          <h3>Metadata Preservation</h3>
+          <p>
+            EXIF, XMP, and IPTC metadata extraction and validation. Geospatial, temporal, and device fingerprinting for complete provenance documentation.
+          </p>
         </article>
         <article class="tech-card reveal">
-          <h3>Edge readiness</h3>
-          <p>Deploys lightweight collectors at the point of capture so authenticity travels with every asset.</p>
+          <h3>API Integration</h3>
+          <p>
+            RESTful and gRPC APIs for seamless integration with existing workflows. SDKs available for Python, JavaScript, Java, and C++ development environments.
+          </p>
         </article>
       </div>
     </section>
 
-    <section id="usecases" class="section usecases">
+    <section id="applications" class="section">
       <div class="section__header">
-        <h2>Built for modern teams</h2>
-        <p>Configurable modules adapt to the needs of communications, intelligence, and operations groups.</p>
+        <h2>Operational Applications</h2>
+        <p>Deployed across defense, intelligence, law enforcement, and critical infrastructure sectors.</p>
       </div>
       <div class="usecase__grid">
         <article class="usecase-card reveal">
-          <h3>National security</h3>
-          <p>Protect command decisions with authenticated intel streams and tamper-evident briefings.</p>
+          <h3>Defense & Intelligence</h3>
+          <p>
+            Validate reconnaissance imagery, SIGINT data, and operational intelligence. Detect adversarial manipulation and ensure evidentiary standards for classification-appropriate workflows.
+          </p>
         </article>
         <article class="usecase-card reveal">
-          <h3>News & broadcast</h3>
-          <p>Defend brand equity with real-time source confirmation and transparent story packages.</p>
+          <h3>Law Enforcement</h3>
+          <p>
+            Authenticate digital evidence for criminal investigations and court proceedings. Maintain chain of custody from collection through prosecution with cryptographic audit trails.
+          </p>
         </article>
         <article class="usecase-card reveal">
-          <h3>Enterprise trust</h3>
-          <p>Secure executive communications, product updates, and supply chain narratives.</p>
+          <h3>Critical Infrastructure</h3>
+          <p>
+            Secure SCADA systems, industrial control networks, and operational technology environments. Verify firmware updates and command authentication for power, water, and transportation systems.
+          </p>
         </article>
         <article class="usecase-card reveal">
-          <h3>Critical infrastructure</h3>
-          <p>Unify OT/IT visibility with device provenance, audit-ready logs, and anomaly suppression.</p>
+          <h3>Media & Journalism</h3>
+          <p>
+            Combat misinformation with verifiable source attribution. Authenticate user-generated content and prevent publication of manipulated imagery or deepfake media.
+          </p>
         </article>
       </div>
     </section>
 
-    <section id="intel" class="section intel">
+    <section id="compliance" class="section section--contrast">
       <div class="section__header">
-        <h2>Operational intelligence</h2>
-        <p>Continuous insights keep your teams synchronized and confident in every release.</p>
+        <h2>Standards & Compliance</h2>
+        <p>Meets requirements for government, defense, and regulated industry applications.</p>
       </div>
-      <div class="intel__grid">
-        <article class="intel-card reveal">
-          <h3>Playbook automations</h3>
-          <p>Trigger remediations, escalations, and attestations through the tools your teams already use.</p>
-        </article>
-        <article class="intel-card reveal">
-          <h3>Integration ready</h3>
-          <p>Secure APIs deliver authenticity events directly into your newsroom, SOC, or collaboration stack.</p>
-        </article>
-        <article class="intel-card reveal">
-          <h3>Operator experience</h3>
-          <p>Accessible design, responsive layouts, and inline auditing accelerate analyst throughput.</p>
-        </article>
-      </div>
-      <div class="cta-panel">
-        <div>
-          <h3>Ready to activate Authyntic?</h3>
-          <p>Our specialists partner with your security, editorial, and operations teams to stand up trusted pipelines in weeks—not quarters.</p>
+      <div class="compliance__grid">
+        <div class="compliance-item reveal">
+          <h4>NIST Cybersecurity Framework</h4>
+          <p>Aligned with NIST CSF controls for Identify, Protect, Detect, Respond, and Recover functions.</p>
         </div>
-        <a class="btn btn--primary" href="#contact">Schedule a deployment review</a>
+        <div class="compliance-item reveal">
+          <h4>FIPS 140-2/3</h4>
+          <p>Cryptographic modules validated to Federal Information Processing Standards for government use.</p>
+        </div>
+        <div class="compliance-item reveal">
+          <h4>Chain of Custody</h4>
+          <p>Forensically sound handling procedures compliant with Federal Rules of Evidence and Daubert standards.</p>
+        </div>
+        <div class="compliance-item reveal">
+          <h4>ISO 27001</h4>
+          <p>Information security management practices certified to international standards for data protection.</p>
+        </div>
       </div>
     </section>
 
-    <section id="contact" class="section contact">
+    <section id="contact" class="section">
       <div class="contact__card">
-        <h2>Engage Authyntic</h2>
-        <p>Request a secure demo environment or production pilot tailored to your mission profile.</p>
+        <h2>Request Information</h2>
+        <p>Contact our team for technical documentation, product briefings, or deployment planning assistance.</p>
         <div class="contact__actions">
-          <a href="mailto:info@authynticdefense.com" class="btn btn--primary">Email Operations</a>
-          <a href="https://www.linkedin.com/company/authyntic-defense" target="_blank" rel="noopener" class="btn btn--ghost">LinkedIn</a>
+          <a href="mailto:info@authynticdefense.com" class="btn btn--primary">Email: info@authynticdefense.com</a>
+          <a href="pages/contact.html" class="btn btn--secondary">Contact Form</a>
         </div>
-      </div>
-      <div class="contact__status" aria-live="polite">
-        <span class="status-label">System integrity</span>
-        <span class="status-value">94.2%</span>
-        <span class="status-sub">All sectors nominal</span>
+        <p class="contact__note">
+          For classified inquiries or secure communications, please contact through official government channels.
+        </p>
       </div>
     </section>
   </main>
 
   <footer class="site-footer">
-    <p>© 2025 Authyntic Defense. All rights reserved.</p>
-    <p>Made for teams who defend reality.</p>
+    <div class="footer-content">
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <img src="assets/blackonblackLogo.png" alt="Authyntic" class="footer-logo-img">
+          <span>AUTHYNTIC</span>
+        </div>
+        <p class="footer-tagline">Digital Media Authentication Systems</p>
+      </div>
+      <nav class="footer-nav">
+        <div class="footer-nav-section">
+          <h4>Solutions</h4>
+          <a href="pages/solutions.html">Overview</a>
+          <a href="pages/technology.html">Technology</a>
+          <a href="pages/capabilities.html">Capabilities</a>
+        </div>
+        <div class="footer-nav-section">
+          <h4>Company</h4>
+          <a href="pages/about.html">About</a>
+          <a href="pages/contact.html">Contact</a>
+        </div>
+        <div class="footer-nav-section">
+          <h4>Legal</h4>
+          <a href="pages/privacy.html">Privacy Policy</a>
+          <a href="pages/terms.html">Terms of Service</a>
+        </div>
+      </nav>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Authyntic. All rights reserved.</p>
+      <p class="footer-compliance">ITAR Registered | NIST Compliant | ISO 27001 Certified</p>
+    </div>
   </footer>
   <script src="js/main.js"></script>
 </body>
