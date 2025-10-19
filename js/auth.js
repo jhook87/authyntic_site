@@ -13,14 +13,10 @@
 
   const APPROVED_USERS = {
     justin: {
-      displayName: 'Justin',
-      hash: 'e8eaa9abf6a40467207476374a4581bc3afb3e2bc196136e7ae01328c938d260',
-      fallbackPassword: 'VectorShield!913'
+      displayName: 'Justin'
     },
     zach: {
-      displayName: 'Zach',
-      hash: 'ea7a6ff66bebe49ef591370c620f2d0c380d7d1ea4b22bd19d4eab96b46115b6',
-      fallbackPassword: 'SentinelGrid#804'
+      displayName: 'Zach'
     }
   };
 
@@ -210,20 +206,36 @@
       return session;
     },
 
-    createSession(username) {
-      const profile = APPROVED_USERS[username];
-      if (!profile) return null;
-      const issuedAt = now();
-      const session = {
+    createSession(serverResponse) {
+      if (!serverResponse || typeof serverResponse !== 'object') {
+        return null;
+      }
+      const { session, signature } = serverResponse;
+      if (!session || typeof session !== 'object') {
+        return null;
+      }
+      const {
         username,
-        displayName: profile.displayName,
+        displayName,
         issuedAt,
-        expiresAt: issuedAt + SESSION_DURATION_MS,
-        sessionId: generateToken(16)
+        expiresAt,
+        sessionId
+      } = session;
+      if (!username || !issuedAt || !expiresAt || !sessionId) {
+        return null;
+      }
+      const profile = APPROVED_USERS[username];
+      const record = {
+        username,
+        displayName: displayName || (profile ? profile.displayName : username),
+        issuedAt,
+        expiresAt,
+        sessionId,
+        signature: signature || null
       };
-      writeStore(SESSION_KEY, session);
-      scheduleLogoutTimer(session);
-      return session;
+      writeStore(SESSION_KEY, record);
+      scheduleLogoutTimer(record);
+      return record;
     },
 
     clearSession(isExpired = false) {
@@ -375,36 +387,45 @@
         return;
       }
 
-      const profile = APPROVED_USERS[username];
-      if (!profile) {
+      let response;
+      try {
+        response = await fetch('/api/session', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-Token': csrfToken
+          },
+          credentials: 'same-origin',
+          body: JSON.stringify({ username, password, csrfToken })
+        });
+      } catch (networkError) {
+        console.error('[Authyntic] Authentication request failed', networkError);
+        this.showAlert(errorAlert, 'Unable to reach the authentication service. Check your network connection and try again.');
+        return;
+      }
+
+      let payload = null;
+      try {
+        payload = await response.json();
+      } catch (parseError) {
+        console.error('[Authyntic] Failed to parse authentication response', parseError);
+      }
+
+      if (!response.ok || !payload) {
         this.registerFailedAttempt();
-        this.showAlert(errorAlert, 'Access denied. The supplied operator ID is not recognized for demo operations.');
+        const message = payload && payload.error ? payload.error : 'Access denied. The supplied credentials are invalid.';
+        this.showAlert(errorAlert, message);
         this.isRateLimited(rateAlert);
         return;
       }
 
-      let verified = false;
-      const hashed = await digestSHA256(password);
-      if (hashed) {
-        verified = hashed === profile.hash;
-      } else {
-        verified = password === profile.fallbackPassword;
-      }
-
-      if (!verified) {
-        this.registerFailedAttempt();
-        this.showAlert(errorAlert, 'Access denied. The supplied credentials are invalid.');
-        this.isRateLimited(rateAlert);
-        return;
-      }
-
-      this.resetAttempts();
-      const session = this.createSession(username);
+      const session = this.createSession(payload);
       if (!session) {
         this.showAlert(errorAlert, 'Unable to establish a secure session. Refresh the page and try again.');
         return;
       }
 
+      this.resetAttempts();
       this.showAlert(flashAlert, `Welcome back, ${session.displayName}. Establishing secure session...`, 'success');
       this.updateAuthUI();
 
