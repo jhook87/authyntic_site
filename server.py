@@ -6,6 +6,7 @@ from __future__ import annotations
 import collections
 import fnmatch
 import gzip
+import urllib.parse
 import hashlib
 import hmac
 import http.server
@@ -252,22 +253,45 @@ class SecureHTTPRequestHandler(http.server.SimpleHTTPRequestHandler):
         self.wfile.write(body)
 
     def guess_type(self, path: str) -> str:  # type: ignore[override]
-        # Explicit mappings for common web assets; fallback to default handler
-        if path.endswith('.json'):
-            return 'application/json'
-        if path.endswith('.css'):
-            return 'text/css'
-        if path.endswith('.js'):
-            return 'application/javascript'
-        if path.endswith('.ico'):
-            return 'image/x-icon'
-        if path.endswith('.png'):
-            return 'image/png'
-        if path.endswith('.webp'):
-            return 'image/webp'
-        if path.endswith('.svg'):
-            return 'image/svg+xml'
-        return super().guess_type(path)
+        """Return a best-effort MIME type.
+
+        - Strips query strings/fragments (e.g., ?v=1.3) to avoid empty types
+        - Provides explicit mappings for common web assets
+        - Falls back to mimetypes and parent implementation
+        """
+        try:
+            path_only = urllib.parse.urlsplit(path).path
+        except Exception:
+            # Defensive fallback if urlsplit fails
+            path_only = path.split('?', 1)[0].split('#', 1)[0]
+
+        ext = os.path.splitext(path_only)[1].lower()
+        explicit: Dict[str, str] = {
+            '.html': 'text/html',
+            '.htm': 'text/html',
+            '.json': 'application/json',
+            '.css': 'text/css',
+            '.js': 'application/javascript',
+            '.mjs': 'application/javascript',
+            '.ico': 'image/x-icon',
+            '.png': 'image/png',
+            '.jpg': 'image/jpeg',
+            '.jpeg': 'image/jpeg',
+            '.gif': 'image/gif',
+            '.webp': 'image/webp',
+            '.svg': 'image/svg+xml',
+            '.txt': 'text/plain',
+            '.xml': 'application/xml',
+            '.map': 'application/json',
+        }
+        if ext in explicit:
+            return explicit[ext]
+
+        # Try Python's mimetypes as a secondary source
+        guessed = mimetypes.types_map.get(ext)
+        if guessed:
+            return guessed
+        return super().guess_type(path_only)
 
     def _should_gzip(self, path: str) -> bool:
         """Check if file should be gzip compressed."""
