@@ -59,7 +59,7 @@ export default defineConfig({
   },
   
   optimizeDeps: {
-    include: ['hardhat', 'toolkit'],
+    exclude: ['hardhat', '@nomicfoundation/edr', '@nomicfoundation/solidity-analyzer'],
   },
   
   css: {
