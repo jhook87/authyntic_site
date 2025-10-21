@@ -12,12 +12,13 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://www.authynticdefense.com">
   <link rel="manifest" href="manifest.json">
+  <meta name="csrf-token" content="">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Rajdhani:wght@500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css?v=1.3">
 </head>
-<body class="page">
+<body class="page" data-theme="dark">
   <div class="page__backdrop" aria-hidden="true"></div>
-  <header class="top-bar">
+  <header class="top-bar" data-component="global-header">
     <a href="index.html" class="logo">
       <span class="logo__mark" aria-hidden="true">
         <img src="assets/blackonblackLogo.png" alt="Authyntic Logo" class="logo-image">
@@ -27,26 +28,35 @@
         <span class="logo__tag">Defense Systems</span>
       </div>
     </a>
-    <button class="mobile-menu-toggle" aria-label="Toggle menu" aria-expanded="false">
+    <button class="mobile-menu-toggle" aria-label="Toggle navigation" aria-expanded="false">
       <span class="bar"></span>
       <span class="bar"></span>
       <span class="bar"></span>
     </button>
-    <nav class="primary-nav" aria-label="Main Navigation">
+    <nav class="primary-nav" aria-label="Main navigation">
       <a href="index.html" class="active">Home</a>
       <a href="pages/solutions.html">Solutions</a>
       <a href="pages/technology.html">Technology</a>
       <a href="pages/capabilities.html">Capabilities</a>
       <a href="pages/about.html">About</a>
+      <a href="pages/use-cases.html">Use Cases</a>
       <a href="pages/contact.html">Contact</a>
-      <a href="pages/login.html" class="nav-auth-link" data-auth="login">Login</a>
-      <button type="button" class="nav-auth-link nav-auth-link--logout" data-auth="logout" hidden>Logout</button>
+      <a href="pages/demo.html" data-requires-auth="true" data-auth-role="operator" data-auth-visibility="hide" data-auth-message="Secure operator consoles require an authenticated Authyntic session." data-auth-denied="Operator demo access is restricted to mission-authorized roles.">Operator Demo</a>
     </nav>
-    <div class="auth-indicator" data-auth-status hidden>
-      <span class="auth-indicator__label">Operator</span>
-      <span class="auth-indicator__value" data-auth-user>Guest</span>
+    <div class="top-bar__actions">
+      <button type="button" class="theme-toggle" data-theme-toggle aria-pressed="false">
+        <span class="theme-toggle__icon theme-toggle__icon--moon" aria-hidden="true">☾</span>
+        <span class="theme-toggle__icon theme-toggle__icon--sun" aria-hidden="true">☀</span>
+        <span class="sr-only">Toggle color theme</span>
+      </button>
+      <button type="button" class="nav-auth-link nav-auth-link--login" data-auth="login" data-auth-target="/pages/login.html">Operator Login</button>
+      <button type="button" class="nav-auth-link nav-auth-link--logout" data-auth="logout" hidden>Logout</button>
+      <div class="auth-indicator" data-auth-status hidden>
+        <span class="auth-indicator__label">Operator</span>
+        <span class="auth-indicator__value" data-auth-user>Guest</span>
+      </div>
+      <a class="cta-link" href="pages/contact.html">Request Information</a>
     </div>
-    <a class="cta-link" href="pages/contact.html">Request Information</a>
   </header>
 
   <main>
@@ -211,6 +221,106 @@
       </div>
     </section>
 
+    <section id="operator-demo" class="section section--neutral">
+      <div class="container">
+        <div class="section__header">
+          <h2>Operator Dashboard Preview</h2>
+          <p>Mission owners receive a unified command console that fuses authentication telemetry, trust analytics, and consensus status into a single glanceable display.</p>
+        </div>
+        <div class="dashboard">
+          <div class="dashboard__grid">
+            <div class="panel" style="grid-column: span 7;">
+              <div class="scenario-controls" aria-label="Scenario controls preview">
+                <button type="button" class="scenario-button is-active">Forward Observation</button>
+                <button type="button" class="scenario-button" aria-disabled="true">Coalition Intake</button>
+                <button type="button" class="scenario-button" aria-disabled="true">Emergency Broadcast</button>
+              </div>
+              <div class="scenario-meta">
+                <span>Latency &lt; 45ms</span>
+                <span>Zero-trust policy pack: <strong>Sentinel-12</strong></span>
+                <span>Nodes synchronized: 18</span>
+              </div>
+              <div class="metric-card" data-animate-metric data-progress="94">
+                <span class="metric-card__label">Signal Confidence</span>
+                <span class="metric-card__value">99.4%</span>
+                <span class="metric-card__trend">▲ 1.2% last hour</span>
+                <div class="metric-card__sparkline" aria-hidden="true"></div>
+              </div>
+              <div class="metric-card" data-animate-metric data-progress="72">
+                <span class="metric-card__label">Mission Trust Posture</span>
+                <span class="metric-card__value">92.7%</span>
+                <span class="metric-card__trend">Adaptive policy hold</span>
+                <div class="trust-meter" role="presentation">
+                  <span class="trust-meter__bar" style="--trust-value:0.92"></span>
+                </div>
+              </div>
+            </div>
+            <div class="panel" style="grid-column: span 5;">
+              <h3 class="eyebrow">Consensus Monitor</h3>
+              <div class="consensus-display">
+                <div>
+                  <p class="metric-card__label">Real-time consensus</p>
+                  <div class="consensus-display__value">97.8%</div>
+                </div>
+                <div class="consensus-display__trend">✓ Autonomous quorum stable</div>
+              </div>
+              <div class="activity-feed" aria-label="Recent actions">
+                <div class="activity-item">
+                  <div class="activity-item__detail">
+                    <strong>Operator Zach</strong>
+                    <span>Validated ISR packet batch #2419</span>
+                  </div>
+                  <span class="activity-item__timestamp">+00:23</span>
+                </div>
+                <div class="activity-item">
+                  <div class="activity-item__detail">
+                    <strong>Policy Engine</strong>
+                    <span>Trust delta rebalance applied</span>
+                  </div>
+                  <span class="activity-item__timestamp">+00:12</span>
+                </div>
+                <div class="activity-item">
+                  <div class="activity-item__detail">
+                    <strong>Integrity Mesh</strong>
+                    <span>Edge node 3A resynced with enclave</span>
+                  </div>
+                  <span class="activity-item__timestamp">+00:05</span>
+                </div>
+              </div>
+            </div>
+            <div class="panel" style="grid-column: span 12;">
+              <div class="scenario-timeline" aria-label="Scenario timeline preview">
+                <div class="timeline-item">
+                  <span class="timeline-status"><span class="timeline-marker"></span>00:00</span>
+                  <div class="timeline-content">
+                    <strong>User lifecycle handshake</strong>
+                    <p>Expeditionary operator handshake validated against secure enclave and biometrics cache.</p>
+                  </div>
+                </div>
+                <div class="timeline-item">
+                  <span class="timeline-status"><span class="timeline-marker"></span>+00:08</span>
+                  <div class="timeline-content">
+                    <strong>Threat analytics</strong>
+                    <p>Manipulation heuristics scanned 34 payloads with zero anomalies. Two feeds quarantined for manual triage.</p>
+                  </div>
+                </div>
+                <div class="timeline-item">
+                  <span class="timeline-status"><span class="timeline-marker"></span>+00:15</span>
+                  <div class="timeline-content">
+                    <strong>Consensus broadcast</strong>
+                    <p>Coalition nodes received signed provenance ledger; trust posture increased to 92%.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="text-center mt-8">
+                <a href="pages/demo.html" class="btn btn--primary" data-requires-auth="true" data-auth-role="operator" data-auth-message="Authenticate with mission credentials to enter the live operator dashboard." data-auth-denied="Mission dashboard access is available to cleared operators only.">Enter Live Demo Console</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section id="applications" class="section">
       <div class="container">
         <div class="section__header">
@@ -294,7 +404,7 @@
     <div class="footer-content">
       <div class="footer-brand">
         <div class="footer-logo">
-          <img src="assets/blackonblackLogo.png" alt="Authyntic" class="footer-logo-img">
+          <img src="assets/blackonblackLogo.png" alt="Authyntic" class="footer-logo-img" loading="lazy">
           <span>AUTHYNTIC</span>
         </div>
         <p class="footer-tagline">Digital Media Authentication Systems</p>

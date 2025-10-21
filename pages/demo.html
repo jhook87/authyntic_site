@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Operator Demo | Authyntic Strategic Console</title>
+  <meta name="description" content="Authenticated operator dashboard for exploring Authyntic's strategic control interface, trust metrics, and mission-ready simulations.">
+  <link rel="stylesheet" href="../css/style.css?v=1.3">
+  <link rel="icon" href="../assets/favicon.ico" type="image/x-icon">
+  <meta name="csrf-token" content="">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Rajdhani:wght@500;600&display=swap" rel="stylesheet">
+</head>
+<body class="page" data-theme="dark" data-requires-auth="true" data-requires-role="operator" data-auth-message="Authenticate with your authorized operator credentials to access the live demo." data-auth-denied="Operator clearance is required for the Authyntic demo console.">
+  <div class="page__backdrop" aria-hidden="true"></div>
+
+  <header class="top-bar" data-component="global-header">
+    <a href="../index.html" class="logo">
+      <span class="logo__mark" aria-hidden="true">
+        <img src="../assets/blackonblackLogo.png" alt="Authyntic Logo" class="logo-image" loading="lazy">
+      </span>
+      <div class="logo__info">
+        <span class="logo__title">AUTHYNTIC</span>
+        <span class="logo__tag">Defense Systems</span>
+      </div>
+    </a>
+    <button class="mobile-menu-toggle" aria-label="Toggle navigation" aria-expanded="false">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </button>
+    <nav class="primary-nav" aria-label="Main navigation">
+      <a href="../index.html">Home</a>
+      <a href="solutions.html">Solutions</a>
+      <a href="technology.html">Technology</a>
+      <a href="capabilities.html">Capabilities</a>
+      <a href="use-cases.html">Use Cases</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <a href="demo.html" class="active" data-requires-auth="true" data-auth-role="operator">Operator Demo</a>
+    </nav>
+    <div class="top-bar__actions">
+      <button type="button" class="theme-toggle" data-theme-toggle aria-pressed="false">
+        <span class="theme-toggle__icon theme-toggle__icon--moon" aria-hidden="true">☾</span>
+        <span class="theme-toggle__icon theme-toggle__icon--sun" aria-hidden="true">☀</span>
+        <span class="sr-only">Toggle color theme</span>
+      </button>
+      <button type="button" class="nav-auth-link nav-auth-link--login" data-auth="login" data-auth-target="/pages/login.html">Operator Login</button>
+      <button type="button" class="nav-auth-link nav-auth-link--logout" data-auth="logout" hidden>Logout</button>
+      <div class="auth-indicator" data-auth-status hidden>
+        <span class="auth-indicator__label">Operator</span>
+        <span class="auth-indicator__value" data-auth-user>Guest</span>
+      </div>
+      <a class="cta-link" href="contact.html">Request Information</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="section hero">
+      <div class="container">
+        <div class="hero__grid">
+          <div class="hero__content">
+            <p class="eyebrow">Strategic Control Demo</p>
+            <h1 class="hero__title">Mission Authenticity Command Center</h1>
+            <p class="hero__lead">
+              Explore Authyntic's mission console with live-updating trust posture, system health, and consensus telemetry. Pre-programmed scenarios simulate user lifecycles, threat responses, and authentication events in real time.
+            </p>
+            <div class="hero__actions">
+              <button type="button" class="btn btn--primary" data-sim-action="start">Start Simulation</button>
+              <button type="button" class="btn btn--secondary" data-sim-action="pause">Pause</button>
+              <button type="button" class="btn btn--ghost" data-sim-action="reset">Reset</button>
+            </div>
+            <div class="alert alert--info" data-sim-status hidden></div>
+          </div>
+          <div class="hero__preview">
+            <div class="preview-card">
+              <div class="preview-header">
+                <span class="preview-badge preview-badge--verified">MISSION THREAD</span>
+                <span class="preview-time" data-sim-clock>00:00</span>
+              </div>
+              <div class="preview-body">
+                <h3 class="preview-title">Live Consensus Snapshot</h3>
+                <div class="preview-metrics">
+                  <div class="metric">
+                    <span class="metric-label">Active Operators</span>
+                    <div class="metric-bar">
+                      <div class="bar-fill" data-sim-active-operators data-percent="72" style="width: 0"></div>
+                    </div>
+                    <span class="metric-value" data-sim-active-operators-label>0</span>
+                  </div>
+                  <div class="metric">
+                    <span class="metric-label">Authenticated Nodes</span>
+                    <div class="metric-bar">
+                      <div class="bar-fill" data-sim-node-health data-percent="95" style="width: 0"></div>
+                    </div>
+                    <span class="metric-value" data-sim-node-health-label>0</span>
+                  </div>
+                </div>
+                <div class="preview-footer">
+                  <span class="preview-label">Scenario</span>
+                  <code class="preview-hash" data-sim-scenario-label>Awaiting selection</code>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="dashboard">
+      <div class="container">
+        <div class="section__header">
+          <h2>Operator Dashboard</h2>
+          <p>Select a mission scenario to drive timeline progression, trust metrics, and system health indicators.</p>
+        </div>
+        <div class="dashboard" data-operator-dashboard>
+          <div class="dashboard__grid">
+            <div class="panel" style="grid-column: span 7;">
+              <div class="scenario-controls" data-scenario-controls>
+                <button type="button" class="scenario-button is-active" data-scenario="forward-observation">Forward Observation</button>
+                <button type="button" class="scenario-button" data-scenario="coalition-onboarding">Coalition Onboarding</button>
+                <button type="button" class="scenario-button" data-scenario="critical-infrastructure">Critical Infrastructure</button>
+              </div>
+              <div class="scenario-meta" data-scenario-meta></div>
+              <div class="metric-grid" data-metric-grid>
+                <div class="metric-card" data-metric="trust" data-animate-metric>
+                  <span class="metric-card__label">Trust Posture</span>
+                  <span class="metric-card__value" data-metric-value>--</span>
+                  <span class="metric-card__trend" data-metric-trend></span>
+                  <div class="metric-card__sparkline" aria-hidden="true"></div>
+                </div>
+                <div class="metric-card" data-metric="latency" data-animate-metric>
+                  <span class="metric-card__label">Authentication Latency</span>
+                  <span class="metric-card__value" data-metric-value>--</span>
+                  <span class="metric-card__trend" data-metric-trend></span>
+                  <div class="metric-card__sparkline" aria-hidden="true"></div>
+                </div>
+                <div class="metric-card" data-metric="coverage" data-animate-metric>
+                  <span class="metric-card__label">Coverage Compliance</span>
+                  <span class="metric-card__value" data-metric-value>--</span>
+                  <span class="metric-card__trend" data-metric-trend></span>
+                  <div class="metric-card__sparkline" aria-hidden="true"></div>
+                </div>
+              </div>
+            </div>
+            <div class="panel" style="grid-column: span 5;">
+              <h3 class="eyebrow">Consensus Monitor</h3>
+              <div class="consensus-display" data-consensus>
+                <div>
+                  <p class="metric-card__label">Real-time consensus</p>
+                  <div class="consensus-display__value" data-consensus-value>--</div>
+                </div>
+                <div class="consensus-display__trend" data-consensus-trend></div>
+              </div>
+              <div class="trust-meter" role="presentation">
+                <span class="trust-meter__bar" data-consensus-meter></span>
+              </div>
+              <div class="activity-feed" data-activity-feed aria-live="polite"></div>
+            </div>
+            <div class="panel" style="grid-column: span 7;">
+              <h3 class="eyebrow">Scenario Timeline</h3>
+              <div class="scenario-timeline" data-timeline></div>
+            </div>
+            <div class="panel" style="grid-column: span 5;">
+              <h3 class="eyebrow">System Health Grid</h3>
+              <div class="system-health-grid" data-health-grid></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--contrast">
+      <div class="container">
+        <div class="section__header">
+          <h2>Design System Snapshot</h2>
+          <p>Mission operators benefit from a cohesive visual language tuned for high-clarity displays across command posts and expeditionary kits.</p>
+        </div>
+        <div class="design-system">
+          <div class="design-system__row">
+            <div class="design-token">
+              <div class="design-token__swatch" style="background: var(--color-accent);"></div>
+              <div class="design-token__label">Primary Accent</div>
+              <div class="design-token__value">#3CF3C1</div>
+            </div>
+            <div class="design-token">
+              <div class="design-token__swatch" style="background: var(--color-accent-secondary);"></div>
+              <div class="design-token__label">Secondary Accent</div>
+              <div class="design-token__value">#4C7DFF</div>
+            </div>
+            <div class="design-token">
+              <div class="design-token__swatch" style="background: rgba(4, 18, 38, 0.86);"></div>
+              <div class="design-token__label">Surface</div>
+              <div class="design-token__value">Mission Console</div>
+            </div>
+            <div class="design-token">
+              <div class="design-token__swatch" style="background: rgba(255, 196, 86, 0.45);"></div>
+              <div class="design-token__label">Alert Accent</div>
+              <div class="design-token__value">#FFC456</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-content">
+      <div class="footer-brand">
+        <div class="footer-logo">
+                <img src="../assets/blackonblackLogo.png" alt="Authyntic" class="footer-logo-img" loading="lazy">
+          <span>AUTHYNTIC</span>
+        </div>
+        <p class="footer-tagline">Digital Media Authentication Systems</p>
+      </div>
+      <nav class="footer-nav">
+        <div class="footer-nav-section">
+          <h4>Console</h4>
+          <a href="../index.html">Overview</a>
+          <a href="solutions.html">Solutions</a>
+          <a href="technology.html">Technology</a>
+        </div>
+        <div class="footer-nav-section">
+          <h4>Support</h4>
+          <a href="contact.html">Contact</a>
+          <a href="mailto:security@authynticdefense.com">Security Response</a>
+        </div>
+      </nav>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Authyntic. All rights reserved.</p>
+      <p class="footer-compliance">ITAR Registered | NIST Compliant | ISO 27001 Certified</p>
+    </div>
+  </footer>
+
+  <script src="../js/auth.js"></script>
+  <script src="../js/main.js"></script>
+  <script src="../js/demo.js"></script>
+</body>
+</html>

@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -7,13 +8,13 @@
   <meta name="description" content="Explore Authyntic's core capabilities spanning cryptographic validation, manipulation detection, and resilient custody operations for contested missions.">
   <link rel="stylesheet" href="../css/style.css?v=1.3">
   <link rel="icon" href="../assets/favicon.ico" type="image/x-icon">
+  <meta name="csrf-token" content="">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Rajdhani:wght@500;600&display=swap" rel="stylesheet">
-  <script src="../js/main.js" defer></script>
 </head>
-<body class="page">
+<body class="page" data-theme="dark">
   <div class="page__backdrop" aria-hidden="true"></div>
 
-  <header class="top-bar">
+  <header class="top-bar" data-component="global-header">
     <a href="../index.html" class="logo">
       <span class="logo__mark" aria-hidden="true">
         <img src="../assets/blackonblackLogo.png" alt="Authyntic Logo" class="logo-image">
@@ -24,13 +25,13 @@
       </div>
     </a>
 
-    <button class="mobile-menu-toggle" aria-label="Toggle menu" aria-expanded="false">
+    <button class="mobile-menu-toggle" aria-label="Toggle navigation" aria-expanded="false">
       <span class="bar"></span>
       <span class="bar"></span>
       <span class="bar"></span>
     </button>
 
-    <nav class="primary-nav" aria-label="Main Navigation">
+    <nav class="primary-nav" aria-label="Main navigation">
       <a href="../index.html">Home</a>
       <a href="solutions.html">Solutions</a>
       <a href="technology.html">Technology</a>
@@ -38,8 +39,22 @@
       <a href="use-cases.html">Use Cases</a>
       <a href="about.html">About</a>
       <a href="contact.html">Contact</a>
+      <a href="demo.html" data-requires-auth="true" data-auth-role="operator" data-auth-visibility="hide" data-auth-message="Secure operator consoles require an authenticated Authyntic session." data-auth-denied="Operator demo access is restricted to mission-authorized roles.">Operator Demo</a>
     </nav>
-    <a class="cta-link" href="contact.html">Request Information</a>
+    <div class="top-bar__actions">
+      <button type="button" class="theme-toggle" data-theme-toggle aria-pressed="false">
+        <span class="theme-toggle__icon theme-toggle__icon--moon" aria-hidden="true">☾</span>
+        <span class="theme-toggle__icon theme-toggle__icon--sun" aria-hidden="true">☀</span>
+        <span class="sr-only">Toggle color theme</span>
+      </button>
+      <button type="button" class="nav-auth-link nav-auth-link--login" data-auth="login" data-auth-target="/pages/login.html">Operator Login</button>
+      <button type="button" class="nav-auth-link nav-auth-link--logout" data-auth="logout" hidden>Logout</button>
+      <div class="auth-indicator" data-auth-status hidden>
+        <span class="auth-indicator__label">Operator</span>
+        <span class="auth-indicator__value" data-auth-user>Guest</span>
+      </div>
+      <a class="cta-link" href="contact.html">Request Information</a>
+    </div>
   </header>
 
   <main>
@@ -202,7 +217,7 @@
         <div class="site-footer__info">
           <a href="../index.html" class="logo">
             <span class="logo__mark">
-              <img src="../assets/blackonblackLogo.png" alt="Authyntic Logo" class="logo-image">
+              <img src="../assets/blackonblackLogo.png" alt="Authyntic Logo" class="logo-image" loading="lazy">
             </span>
           </a>
           <p>&copy; 2025 AUTHYNTIC. All rights reserved.</p>
@@ -214,5 +229,7 @@
       </div>
     </div>
   </footer>
+  <script src="../js/auth.js"></script>
+  <script src="../js/main.js"></script>
 </body>
 </html>
