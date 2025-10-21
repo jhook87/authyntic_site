@@ -13,10 +13,12 @@
 
   const APPROVED_USERS = {
     justin: {
-      displayName: 'Justin'
+      displayName: 'Justin',
+      roles: ['operator', 'commander']
     },
     zach: {
-      displayName: 'Zach'
+      displayName: 'Zach',
+      roles: ['operator', 'analyst']
     }
   };
 
@@ -92,6 +94,31 @@
     return fallback;
   }
 
+  function parseRoles(input) {
+    if (!input) {
+      return [];
+    }
+    if (Array.isArray(input)) {
+      return input.filter(Boolean).map((role) => role.toString().trim().toLowerCase()).filter(Boolean);
+    }
+    return input
+      .toString()
+      .split(',')
+      .map((role) => role.trim().toLowerCase())
+      .filter(Boolean);
+  }
+
+  function hasRequiredRoles(session, requiredRoles) {
+    if (!requiredRoles || requiredRoles.length === 0) {
+      return true;
+    }
+    if (!session || !Array.isArray(session.roles)) {
+      return false;
+    }
+    const normalized = session.roles.map((role) => role.toString().toLowerCase());
+    return requiredRoles.every((role) => normalized.includes(role));
+  }
+
   function scheduleLogoutTimer(session) {
     if (logoutTimer) {
       window.clearTimeout(logoutTimer);
@@ -145,10 +172,12 @@
       this.csrfToken = this.ensureCsrfToken();
       this.attachStorageListener();
       this.updateAuthUI();
+      this.bindLoginControls();
       this.bindLogoutControls();
       this.guardProtectedLinks();
       this.scheduleSessionWatcher();
       this.renderQueuedMessage();
+      this.enforcePageRequirement();
       if (document.body && document.body.hasAttribute('data-login-page')) {
         this.prepareLoginPage();
       }
@@ -219,18 +248,21 @@
         displayName,
         issuedAt,
         expiresAt,
-        sessionId
+        sessionId,
+        roles
       } = session;
       if (!username || !issuedAt || !expiresAt || !sessionId) {
         return null;
       }
       const profile = APPROVED_USERS[username];
+      const normalizedRoles = parseRoles(Array.isArray(roles) && roles.length ? roles : profile ? profile.roles : []);
       const record = {
         username,
         displayName: displayName || (profile ? profile.displayName : username),
         issuedAt,
         expiresAt,
         sessionId,
+        roles: normalizedRoles,
         signature: signature || null
       };
       writeStore(SESSION_KEY, record);
@@ -261,6 +293,12 @@
       const isAuthenticated = Boolean(session);
       if (document.body) {
         document.body.classList.toggle('is-authenticated', isAuthenticated);
+        document.body.setAttribute('data-authenticated', isAuthenticated ? 'true' : 'false');
+        if (session && Array.isArray(session.roles)) {
+          document.body.setAttribute('data-auth-roles', session.roles.join(','));
+        } else {
+          document.body.removeAttribute('data-auth-roles');
+        }
       }
       const loginControls = document.querySelectorAll('[data-auth="login"]');
       const logoutControls = document.querySelectorAll('[data-auth="logout"]');
@@ -288,13 +326,62 @@
         label.textContent = isAuthenticated ? session.displayName : '';
       });
       gatedLinks.forEach((link) => {
+        const requiredRoles = parseRoles(link.dataset.authRole);
         if (!isAuthenticated) {
           link.classList.add('requires-auth');
           link.dataset.authState = 'locked';
+          return;
+        }
+        const hasRoles = hasRequiredRoles(session, requiredRoles);
+        if (!hasRoles) {
+          link.classList.add('requires-auth');
+          link.dataset.authState = 'insufficient-role';
         } else {
           link.classList.remove('requires-auth');
           delete link.dataset.authState;
         }
+      });
+      this.applyRoleVisibility(session);
+    },
+
+    applyRoleVisibility(session) {
+      const roleTargets = document.querySelectorAll('[data-auth-role]');
+      roleTargets.forEach((element) => {
+        const requiredRoles = parseRoles(element.dataset.authRole);
+        const visibility = element.getAttribute('data-auth-visibility') || 'disable';
+        const hasRoles = hasRequiredRoles(session, requiredRoles);
+        if (hasRoles) {
+          element.hidden = false;
+          element.removeAttribute('aria-disabled');
+          element.classList.remove('requires-auth');
+          delete element.dataset.authState;
+          return;
+        }
+        if (visibility === 'hide') {
+          element.hidden = true;
+        } else {
+          element.hidden = false;
+          element.setAttribute('aria-disabled', 'true');
+          element.classList.add('requires-auth');
+          element.dataset.authState = 'locked';
+        }
+      });
+    },
+
+    bindLoginControls() {
+      document.querySelectorAll('[data-auth="login"]').forEach((control) => {
+        if (control.dataset.authListener === 'true') {
+          return;
+        }
+        control.dataset.authListener = 'true';
+        if (control.tagName === 'A') {
+          return;
+        }
+        control.addEventListener('click', (event) => {
+          event.preventDefault();
+          const target = control.getAttribute('data-auth-target') || (control.getAttribute('href') || '');
+          this.openLogin(target);
+        });
       });
     },
 
@@ -312,6 +399,12 @@
       });
     },
 
+    openLogin(target) {
+      const currentLocation = window.location.pathname + window.location.search + window.location.hash;
+      const nextTarget = safeRedirectPath(target) || currentLocation;
+      window.location.href = getLoginUrl(nextTarget);
+    },
+
     guardProtectedLinks() {
       document.querySelectorAll('[data-requires-auth]').forEach((link) => {
         if (link.dataset.authBound === 'true') {
@@ -319,16 +412,43 @@
         }
         link.dataset.authBound = 'true';
         link.addEventListener('click', (event) => {
-          if (this.getSession()) {
+          const session = this.getSession();
+          const requiredRoles = parseRoles(link.dataset.authRole);
+          if (!session) {
+            event.preventDefault();
+            const nextTarget = link.getAttribute('data-auth-next') || link.getAttribute('href') || window.location.href;
+            const message = link.getAttribute('data-auth-message') || 'Please sign in with authorized credentials to open the secure demo environment.';
+            this.queueMessage('warning', message);
+            window.location.href = getLoginUrl(nextTarget);
             return;
           }
-          event.preventDefault();
-          const nextTarget = link.getAttribute('data-auth-next') || link.getAttribute('href') || window.location.href;
-          const message = link.getAttribute('data-auth-message') || 'Please sign in with authorized credentials to open the secure demo environment.';
-          this.queueMessage('warning', message);
-          window.location.href = getLoginUrl(nextTarget);
+          if (!hasRequiredRoles(session, requiredRoles)) {
+            event.preventDefault();
+            const deniedMessage = link.getAttribute('data-auth-denied') || 'Your current authorization level does not permit access to this asset.';
+            this.queueMessage('warning', deniedMessage);
+            return;
+          }
         });
       });
+    },
+
+    enforcePageRequirement() {
+      const page = document.body;
+      if (!page || !page.hasAttribute('data-requires-auth')) {
+        return;
+      }
+      const session = this.getSession();
+      const redirectTarget = page.getAttribute('data-auth-redirect') || (window.location.pathname + window.location.search + window.location.hash);
+      if (!session) {
+        this.queueMessage('warning', page.getAttribute('data-auth-message') || 'Authenticate to continue to the protected console.');
+        window.location.href = getLoginUrl(redirectTarget);
+        return;
+      }
+      const requiredRoles = parseRoles(page.getAttribute('data-requires-role'));
+      if (!hasRequiredRoles(session, requiredRoles)) {
+        this.queueMessage('warning', page.getAttribute('data-auth-denied') || 'This console requires an elevated authorization tier.');
+        window.location.href = '/';
+      }
     },
 
     prepareLoginPage() {
