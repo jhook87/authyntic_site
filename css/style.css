@@ -947,6 +947,8 @@ p {
   font-size: 1rem;
   color: var(--color-text-soft);
   margin-left: 4px;
+}
+
 .btn--ghost:focus-visible {
   border-color: var(--color-accent);
   color: var(--color-accent);
