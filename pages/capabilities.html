@@ -18,7 +18,10 @@
   <header class="top-bar" data-component="global-header">
     <a href="../index.html" class="logo">
       <span class="logo__mark" aria-hidden="true">
-        <img src="../assets/blackonblackLogo.png" alt="Authyntic Logo" class="logo-image">
+        <picture>
+          <source srcset="../assets/blackonblackLogo.webp" type="image/webp">
+          <img src="../assets/blackonblackLogo.png" alt="Authyntic Logo" class="logo-image" width="64" height="64" loading="eager" decoding="async">
+        </picture>
       </span>
       <div class="logo__info">
         <span class="logo__title">AUTHYNTIC</span>
@@ -40,7 +43,7 @@
       <a href="use-cases.html">Use Cases</a>
       <a href="about.html">About</a>
       <a href="contact.html">Contact</a>
-      <a href="demo.html" data-requires-auth="true" data-auth-role="operator" data-auth-visibility="hide" data-auth-message="Secure operator consoles require an authenticated Authyntic session." data-auth-denied="Operator demo access is restricted to mission-authorized roles.">Operator Demo</a>
+      <a href="demo.html" data-requires-auth="true" data-auth-role="operator" data-auth-visibility="hide" data-auth-message="Demo access is restricted to authorized Authyntic representatives." data-auth-denied="Operator demo access is restricted to mission-authorized roles.">Rep Demo</a>
     </nav>
     <div class="top-bar__actions">
       <button type="button" class="theme-toggle" data-theme-toggle aria-pressed="false">
@@ -48,7 +51,7 @@
         <span class="theme-toggle__icon theme-toggle__icon--sun" aria-hidden="true">☀</span>
         <span class="sr-only">Toggle color theme</span>
       </button>
-      <button type="button" class="nav-auth-link nav-auth-link--login" data-auth="login" data-auth-target="/pages/login.html">Operator Login</button>
+      <button type="button" class="nav-auth-link nav-auth-link--login" data-auth="login" data-auth-target="/pages/login.html">Rep Login</button>
       <button type="button" class="nav-auth-link nav-auth-link--logout" data-auth="logout" hidden>Logout</button>
       <div class="auth-indicator" data-auth-status hidden>
         <span class="auth-indicator__label">Operator</span>
@@ -64,13 +67,13 @@
         <div class="hero__grid">
           <div class="hero__content">
             <p class="eyebrow">Mission Capabilities</p>
-            <h1 class="hero__title">Assurance Modules Built for Contested Domains</h1>
+            <h1 class="hero__title">Platform Capabilities</h1>
             <p class="hero__lead">
-              Authyntic fuses cryptography, machine intelligence, and operational tradecraft into modular capabilities that secure every stage of the mission media lifecycle.
+              Authyntic provides comprehensive media authentication capabilities combining cryptographic verification, forensic analysis, and secure chain-of-custody tracking.
             </p>
             <div class="hero__actions">
-              <a href="../index.html#capabilities" class="btn btn--secondary">View Home Overview</a>
-              <a href="contact.html" class="btn btn--ghost">Plan a Capability Brief</a>
+              <a href="../index.html#capabilities" class="btn btn--secondary">View Overview</a>
+              <a href="contact.html" class="btn btn--ghost">Contact Us</a>
             </div>
           </div>
           <div class="hero__preview">
@@ -80,7 +83,10 @@
                 <span class="preview-time">Live Readiness</span>
               </div>
               <div class="hero-image">
-                <img src="../assets/capabilities-hero.png" alt="Authyntic Capabilities Overview" width="1600" height="900" loading="eager" decoding="async" fetchpriority="high" onerror="this.src='../assets/HeroImage.png'">
+                <picture>
+                  <source srcset="../assets/HeroImage.webp" type="image/webp">
+                  <img src="../assets/HeroImage.png" alt="Authyntic Capabilities Overview" width="1600" height="900" loading="eager" decoding="async" fetchpriority="high">
+                </picture>
               </div>
               <div class="preview-body">
                 <h3 class="preview-title">Operational Integrity Metrics</h3>

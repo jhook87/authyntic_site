@@ -13,6 +13,11 @@
   <meta property="og:url" content="https://www.authynticdefense.com">
   <!-- Manifest removed - GitHub Codespaces tunnel issue -->
   <meta name="csrf-token" content="">
+  <!-- Resource hints for performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" href="css/style.css?v=1.3" as="style">
+  <link rel="preload" href="assets/blackonblackLogo.webp" as="image" type="image/webp">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Rajdhani:wght@500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css?v=1.3">
 </head>
@@ -22,7 +27,10 @@
   <header class="top-bar" data-component="global-header">
     <a href="index.html" class="logo">
       <span class="logo__mark" aria-hidden="true">
-        <img src="assets/blackonblackLogo.png" alt="Authyntic Logo" class="logo-image">
+        <picture>
+          <source srcset="assets/blackonblackLogo.webp" type="image/webp">
+          <img src="assets/blackonblackLogo.png" alt="Authyntic Logo" class="logo-image" width="64" height="64" loading="eager" decoding="async">
+        </picture>
       </span>
       <div class="logo__info">
         <span class="logo__title">AUTHYNTIC</span>
@@ -42,7 +50,7 @@
       <a href="pages/about.html">About</a>
       <a href="pages/use-cases.html">Use Cases</a>
       <a href="pages/contact.html">Contact</a>
-      <a href="pages/demo.html" data-requires-auth="true" data-auth-role="operator" data-auth-visibility="hide" data-auth-message="Secure operator consoles require an authenticated Authyntic session." data-auth-denied="Operator demo access is restricted to mission-authorized roles.">Operator Demo</a>
+      <a href="pages/demo.html" data-requires-auth="true" data-auth-role="operator" data-auth-visibility="hide" data-auth-message="Demo access is restricted to authorized Authyntic representatives." data-auth-denied="This demo is available only to Authyntic team members.">Rep Demo</a>
     </nav>
     <div class="top-bar__actions">
       <button type="button" class="theme-toggle" data-theme-toggle aria-pressed="false">
@@ -50,10 +58,10 @@
         <span class="theme-toggle__icon theme-toggle__icon--sun" aria-hidden="true">☀</span>
         <span class="sr-only">Toggle color theme</span>
       </button>
-      <button type="button" class="nav-auth-link nav-auth-link--login" data-auth="login" data-auth-target="/pages/login.html">Operator Login</button>
+      <button type="button" class="nav-auth-link nav-auth-link--login" data-auth="login" data-auth-target="/pages/login.html">Rep Login</button>
       <button type="button" class="nav-auth-link nav-auth-link--logout" data-auth="logout" hidden>Logout</button>
       <div class="auth-indicator" data-auth-status hidden>
-        <span class="auth-indicator__label">Operator</span>
+        <span class="auth-indicator__label">Representative</span>
         <span class="auth-indicator__value" data-auth-user>Guest</span>
       </div>
       <a class="cta-link" href="pages/contact.html">Request Information</a>
@@ -65,30 +73,29 @@
       <div class="container">
         <div class="hero__grid">
           <div class="hero__content">
-            <p class="eyebrow">Operational Media Assurance</p>
+            <p class="eyebrow">Digital Media Authentication</p>
             <h1 class="hero__title">
-              Command Authentic Information Advantage
+              Verify Media Authenticity and Provenance
             </h1>
             <p class="hero__description">
-              Authyntic secures the provenance of video, imagery, and sensor capture across contested theaters. Our platform fuses cryptography, signal analytics, and automation so commanders, analysts, and investigators act on trusted digital evidence at the speed of the mission.
+              Authyntic provides cryptographic verification and chain-of-custody tracking for digital media assets. Our platform combines secure capture, tamper detection, and forensic analysis to help organizations establish and maintain the integrity of visual evidence.
             </p>
             <div class="hero__actions">
-              <a href="pages/solutions.html" class="btn btn--primary">Explore the Platform</a>
-              <a href="pages/contact.html" class="btn btn--secondary">Schedule a Technical Brief</a>
-              <a href="pages/solutions.html#demo" class="btn btn--ghost" data-requires-auth="true" data-auth-message="Secure demo access requires an authorized Authyntic operator login.">Access Secure Demo</a>
+              <a href="pages/solutions.html" class="btn btn--primary">View Solutions</a>
+              <a href="pages/contact.html" class="btn btn--secondary">Request a Demo</a>
             </div>
             <div class="hero__stats">
               <div class="stat-item">
-                <div class="stat-value"><span class="counter" data-count="99.99">0</span>%</div>
-                <div class="stat-label">Signal Fidelity Assurance</div>
+                <div class="stat-value"><span class="counter" data-count="99.9">0</span>%</div>
+                <div class="stat-label">Detection Accuracy</div>
               </div>
               <div class="stat-item">
-                <div class="stat-value">&lt;<span class="counter" data-count="45">0</span>ms</div>
-                <div class="stat-label">Automated Vetting Latency</div>
+                <div class="stat-value">&lt;<span class="counter" data-count="100">0</span>ms</div>
+                <div class="stat-label">Processing Time</div>
               </div>
               <div class="stat-item">
                 <div class="stat-value"><span class="counter" data-count="256">0</span>-bit</div>
-                <div class="stat-label">Hardware-Rooted Encryption</div>
+                <div class="stat-label">AES Encryption</div>
               </div>
             </div>
           </div>
@@ -99,7 +106,10 @@
                 <span class="preview-time">Continuous Monitoring</span>
               </div>
               <div class="hero-image">
-                <img src="assets/HeroImage.png" alt="Authyntic Verification Console" width="1600" height="900" loading="eager" decoding="async" fetchpriority="high">
+                <picture>
+                  <source srcset="assets/HeroImage.webp" type="image/webp">
+                  <img src="assets/HeroImage.png" alt="Authyntic Verification Console" width="1600" height="900" loading="eager" decoding="async" fetchpriority="high">
+                </picture>
               </div>
               <div class="preview-body">
                 <h3 class="preview-title">Signal Authenticity Dashboard</h3>
@@ -134,7 +144,7 @@
       <div class="container">
         <div class="section__header">
           <h2>Core Capabilities</h2>
-          <p>Mission-tailored modules fuse cryptography, machine intelligence, and secure operations tradecraft for end-to-end assurance.</p>
+          <p>End-to-end authentication solutions combining cryptographic verification, forensic analysis, and secure chain-of-custody tracking.</p>
         </div>
       <div class="capabilities__grid">
         <article class="capability-card reveal">
@@ -143,9 +153,9 @@
               <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
             </svg>
           </div>
-          <h3>Cryptographic Validation</h3>
+          <h3>Cryptographic Verification</h3>
           <p>
-            Hardware-backed signing chains anchor every capture to custody. Layered key attestation and tamper alarms preserve evidentiary value from source device to archive.
+            Digital signatures and hash-based validation ensure media authenticity from capture through storage. Cryptographic chains maintain verifiable custody records and detect unauthorized modifications.
           </p>
         </article>
         <article class="capability-card reveal">
@@ -154,9 +164,9 @@
               <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
             </svg>
           </div>
-          <h3>Manipulation Detection</h3>
+          <h3>Tampering Detection</h3>
           <p>
-            Multimodal analysis inspects pixels, waveforms, and metadata concurrently. Proprietary models surface fabrication signatures and adversarial noise within seconds.
+            Forensic analysis examines image data, metadata, and file structures to identify signs of manipulation. Advanced algorithms detect common editing artifacts and inconsistencies.
           </p>
         </article>
         <article class="capability-card reveal">
@@ -166,9 +176,9 @@
               <circle cx="12" cy="12" r="10"/>
             </svg>
           </div>
-          <h3>Real-Time Processing</h3>
+          <h3>Efficient Processing</h3>
           <p>
-            Edge-deployed engines deliver sub-45ms adjudication, even in denied environments. Orchestrated clusters scale to thousands of concurrent media objects without throughput loss.
+            Optimized algorithms process verification tasks with minimal latency. Scalable architecture supports concurrent analysis of multiple assets while maintaining consistent performance.
           </p>
         </article>
         <article class="capability-card reveal">
@@ -180,7 +190,7 @@
           </div>
           <h3>Chain of Custody</h3>
           <p>
-            Immutable custody ledgers record every touchpoint. Visual lineage maps provide auditors and commanders real-time situational awareness on content lifecycle.
+            Immutable audit logs track all access and modifications to media assets. Detailed lineage records support forensic investigation and compliance requirements.
           </p>
         </article>
       </div>
@@ -191,31 +201,31 @@
       <div class="container">
         <div class="section__header">
           <h2>Technology Foundation</h2>
-          <p>Engineered with accredited components, hardened deployment patterns, and telemetry that closes the loop between operators and cyber defenders.</p>
+          <p>Built on established security standards and cryptographic protocols with enterprise-grade deployment options.</p>
         </div>
       <div class="tech__grid">
         <article class="tech-card reveal">
-          <h3>Cryptographic Integrity Stack</h3>
+          <h3>Cryptographic Security</h3>
           <p>
-            Dual-key attestations, quantum-resistant hash functions, and secure enclaves ensure every media artifact is bound to an authenticated device and operator identity.
+            Industry-standard encryption algorithms (AES-256, SHA-256) and digital signature schemes ensure data integrity and authenticity throughout the verification workflow.
           </p>
         </article>
         <article class="tech-card reveal">
-          <h3>Distributed Mission Fabric</h3>
+          <h3>Scalable Architecture</h3>
           <p>
-            Containerized verification nodes deploy to garrison, shipboard, or expeditionary stacks with active-active redundancy and policy-aware routing.
+            Containerized services support flexible deployment options from on-premises infrastructure to cloud environments, with horizontal scaling for increased throughput.
           </p>
         </article>
         <article class="tech-card reveal">
-          <h3>Context Preservation</h3>
+          <h3>Metadata Preservation</h3>
           <p>
-            Full-spectrum metadata ingestion captures geospatial, temporal, and platform telemetry. Automated policy packs normalize and safeguard sensitive indicators.
+            Comprehensive metadata capture including timestamps, location data, and device information. Structured storage supports audit trails and forensic analysis.
           </p>
         </article>
         <article class="tech-card reveal">
-          <h3>Interoperability Services</h3>
+          <h3>API Integration</h3>
           <p>
-            REST, gRPC, and message bus adapters integrate with command-and-control suites, evidence management systems, and analytical toolchains.
+            RESTful APIs and standard protocols enable integration with existing document management, security information systems, and analytical platforms.
           </p>
         </article>
       </div>
@@ -225,8 +235,8 @@
     <section id="operator-demo" class="section section--neutral">
       <div class="container">
         <div class="section__header">
-          <h2>Operator Dashboard Preview</h2>
-          <p>Mission owners receive a unified command console that fuses authentication telemetry, trust analytics, and consensus status into a single glanceable display.</p>
+          <h2>Verification Dashboard</h2>
+          <p>Centralized interface provides real-time status updates, verification results, and detailed audit trails for authenticated media assets.</p>
         </div>
         <div class="dashboard">
           <div class="dashboard__grid">
@@ -387,14 +397,14 @@
     <section id="contact" class="section">
       <div class="container">
         <div class="contact__card">
-          <h2>Request a Strategic Assessment</h2>
-          <p>Engage our engineering and mission support teams for architecture consultations, evaluation kits, or deployment planning.</p>
+          <h2>Schedule a Demonstration</h2>
+          <p>Contact our team to arrange a personalized product demonstration with an Authyntic representative.</p>
           <div class="contact__actions">
             <a href="mailto:info@authynticdefense.com" class="btn btn--primary">info@authynticdefense.com</a>
-            <a href="pages/contact.html" class="btn btn--secondary">Secure Contact Form</a>
+            <a href="pages/contact.html" class="btn btn--secondary">Contact Form</a>
           </div>
           <p class="contact__note">
-            For classified engagement, coordinate through established government channels or accredited industry partners.
+            Demonstrations are provided by authorized Authyntic representatives and can be tailored to your organization's specific requirements.
           </p>
         </div>
       </div>
@@ -405,7 +415,10 @@
     <div class="footer-content">
       <div class="footer-brand">
         <div class="footer-logo">
-          <img src="assets/blackonblackLogo.png" alt="Authyntic" class="footer-logo-img" loading="lazy">
+          <picture>
+            <source srcset="assets/blackonblackLogo.webp" type="image/webp">
+            <img src="assets/blackonblackLogo.png" alt="Authyntic" class="footer-logo-img" loading="lazy" width="64" height="64" decoding="async">
+          </picture>
           <span>AUTHYNTIC</span>
         </div>
         <p class="footer-tagline">Digital Media Authentication Systems</p>

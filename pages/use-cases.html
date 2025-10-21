@@ -18,7 +18,10 @@
     <header class="top-bar" data-component="global-header">
         <a href="../index.html" class="logo">
             <span class="logo__mark" aria-hidden="true">
-                <img src="../assets/blackonblackLogo.png" alt="Authyntic Logo" class="logo-image" loading="lazy">
+                <picture>
+                    <source srcset="../assets/blackonblackLogo.webp" type="image/webp">
+                    <img src="../assets/blackonblackLogo.png" alt="Authyntic Logo" class="logo-image" width="64" height="64" loading="eager" decoding="async">
+                </picture>
             </span>
             <div class="logo__info">
                 <span class="logo__title">AUTHYNTIC</span>
@@ -38,7 +41,7 @@
             <a href="use-cases.html" class="active">Use Cases</a>
             <a href="about.html">About</a>
             <a href="contact.html">Contact</a>
-            <a href="demo.html" data-requires-auth="true" data-auth-role="operator" data-auth-visibility="hide" data-auth-message="Secure operator consoles require an authenticated Authyntic session." data-auth-denied="Operator demo access is restricted to mission-authorized roles.">Operator Demo</a>
+            <a href="demo.html" data-requires-auth="true" data-auth-role="operator" data-auth-visibility="hide" data-auth-message="Demo access is restricted to authorized Authyntic representatives." data-auth-denied="Operator demo access is restricted to mission-authorized roles.">Rep Demo</a>
         </nav>
         <div class="top-bar__actions">
             <button type="button" class="theme-toggle" data-theme-toggle aria-pressed="false">
@@ -46,7 +49,7 @@
                 <span class="theme-toggle__icon theme-toggle__icon--sun" aria-hidden="true">☀</span>
                 <span class="sr-only">Toggle color theme</span>
             </button>
-            <button type="button" class="nav-auth-link nav-auth-link--login" data-auth="login" data-auth-target="/pages/login.html">Operator Login</button>
+            <button type="button" class="nav-auth-link nav-auth-link--login" data-auth="login" data-auth-target="/pages/login.html">Rep Login</button>
             <button type="button" class="nav-auth-link nav-auth-link--logout" data-auth="logout" hidden>Logout</button>
             <div class="auth-indicator" data-auth-status hidden>
                 <span class="auth-indicator__label">Operator</span>
@@ -61,15 +64,18 @@
             <div class="container">
                 <div class="hero__grid">
                     <div class="hero__content">
-                        <p class="eyebrow">Mission Profiles</p>
-                        <h1 class="hero__title">Authenticity Where Decisions Demand It</h1>
+                        <p class="eyebrow">Use Cases</p>
+                        <h1 class="hero__title">Industry Applications</h1>
                         <p class="hero__lead">
-                            From expeditionary operations to enterprise fusion centers, Authyntic protects the credibility of every digital asset—ensuring teams act on trusted information when the stakes are highest.
+                            Organizations across defense, law enforcement, legal, and media sectors rely on authenticated digital evidence. Authyntic provides verification capabilities for mission-critical decision making.
                         </p>
                     </div>
                     <div class="hero__preview">
                         <div class="hero-image">
-                            <img src="../assets/use-cases-hero.png" alt="Authyntic Use Cases" width="1600" height="900" loading="eager" decoding="async" fetchpriority="high" onerror="this.src='../assets/HeroImage.png'">
+                            <picture>
+                                <source srcset="../assets/HeroImage.webp" type="image/webp">
+                                <img src="../assets/HeroImage.png" alt="Authyntic Use Cases" width="1600" height="900" loading="eager" decoding="async" fetchpriority="high">
+                            </picture>
                         </div>
                     </div>
                 </div>
@@ -102,7 +108,10 @@
                         </ul>
                     </div>
                     <div class="use-case__image">
-                        <img src="../assets/defense-use-case.png" alt="Defense Use Case" onerror="this.src='../assets/HeroImage.png'">
+                        <picture>
+                            <source srcset="../assets/HeroImage.webp" type="image/webp">
+                            <img src="../assets/HeroImage.png" alt="Defense Use Case" width="1600" height="900" loading="lazy" decoding="async">
+                        </picture>
                     </div>
                 </div>
             </div>
@@ -119,7 +128,10 @@
 
                 <div class="use-case use-case--alt">
                     <div class="use-case__image">
-                        <img src="../assets/infrastructure-use-case.png" alt="Critical Infrastructure Use Case" onerror="this.src='../assets/HeroImage.png'">
+                        <picture>
+                            <source srcset="../assets/HeroImage.webp" type="image/webp">
+                            <img src="../assets/HeroImage.png" alt="Critical Infrastructure Use Case" width="1600" height="900" loading="lazy" decoding="async">
+                        </picture>
                     </div>
                     <div class="use-case__content">
                         <h3>Grid Command Integrity</h3>
@@ -166,7 +178,10 @@
                         </ul>
                     </div>
                     <div class="use-case__image">
-                        <img src="../assets/aerospace-use-case.png" alt="Aerospace Use Case" onerror="this.src='../assets/HeroImage.png'">
+                        <picture>
+                            <source srcset="../assets/HeroImage.webp" type="image/webp">
+                            <img src="../assets/HeroImage.png" alt="Aerospace Use Case" width="1600" height="900" loading="lazy" decoding="async">
+                        </picture>
                     </div>
                 </div>
             </div>

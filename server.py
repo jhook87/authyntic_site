@@ -5,9 +5,11 @@ from __future__ import annotations
 
 import collections
 import fnmatch
+import gzip
 import hashlib
 import hmac
 import http.server
+import io
 import json
 import logging
 import mimetypes
@@ -261,7 +263,16 @@ class SecureHTTPRequestHandler(http.server.SimpleHTTPRequestHandler):
             return 'image/x-icon'
         if path.endswith('.png'):
             return 'image/png'
+        if path.endswith('.webp'):
+            return 'image/webp'
+        if path.endswith('.svg'):
+            return 'image/svg+xml'
         return super().guess_type(path)
+
+    def _should_gzip(self, path: str) -> bool:
+        """Check if file should be gzip compressed."""
+        compressible = ('.html', '.css', '.js', '.json', '.svg', '.xml')
+        return path.endswith(compressible)
 
     def copyfile(self, source, outputfile) -> None:  # type: ignore[no-untyped-def]
         """Override copyfile to handle BrokenPipeError gracefully."""

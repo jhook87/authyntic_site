@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Operator Demo | Authyntic Strategic Console</title>
+  <title>Rep Demo | Authyntic Strategic Console</title>
   <meta name="description" content="Authenticated operator dashboard for exploring Authyntic's strategic control interface, trust metrics, and mission-ready simulations.">
   <link rel="stylesheet" href="../css/style.css?v=1.3">
   <link rel="icon" href="../assets/favicon.ico" type="image/x-icon">
@@ -16,7 +16,10 @@
   <header class="top-bar" data-component="global-header">
     <a href="../index.html" class="logo">
       <span class="logo__mark" aria-hidden="true">
-        <img src="../assets/blackonblackLogo.png" alt="Authyntic Logo" class="logo-image" loading="lazy">
+        <picture>
+          <source srcset="../assets/blackonblackLogo.webp" type="image/webp">
+          <img src="../assets/blackonblackLogo.png" alt="Authyntic Logo" class="logo-image" width="64" height="64" loading="eager" decoding="async">
+        </picture>
       </span>
       <div class="logo__info">
         <span class="logo__title">AUTHYNTIC</span>
@@ -36,7 +39,7 @@
       <a href="use-cases.html">Use Cases</a>
       <a href="about.html">About</a>
       <a href="contact.html">Contact</a>
-      <a href="demo.html" class="active" data-requires-auth="true" data-auth-role="operator">Operator Demo</a>
+      <a href="demo.html" class="active" data-requires-auth="true" data-auth-role="operator">Rep Demo</a>
     </nav>
     <div class="top-bar__actions">
       <button type="button" class="theme-toggle" data-theme-toggle aria-pressed="false">
@@ -44,7 +47,7 @@
         <span class="theme-toggle__icon theme-toggle__icon--sun" aria-hidden="true">☀</span>
         <span class="sr-only">Toggle color theme</span>
       </button>
-      <button type="button" class="nav-auth-link nav-auth-link--login" data-auth="login" data-auth-target="/pages/login.html">Operator Login</button>
+      <button type="button" class="nav-auth-link nav-auth-link--login" data-auth="login" data-auth-target="/pages/login.html">Rep Login</button>
       <button type="button" class="nav-auth-link nav-auth-link--logout" data-auth="logout" hidden>Logout</button>
       <div class="auth-indicator" data-auth-status hidden>
         <span class="auth-indicator__label">Operator</span>

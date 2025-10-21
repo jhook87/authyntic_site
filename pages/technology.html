@@ -17,7 +17,10 @@
     <header class="top-bar" data-component="global-header">
         <a href="../index.html" class="logo">
             <span class="logo__mark" aria-hidden="true">
-                <img src="../assets/blackonblackLogo.png" alt="Authyntic Logo" class="logo-image">
+                <picture>
+                    <source srcset="../assets/blackonblackLogo.webp" type="image/webp">
+                    <img src="../assets/blackonblackLogo.png" alt="Authyntic Logo" class="logo-image" width="64" height="64" loading="eager" decoding="async">
+                </picture>
             </span>
             <div class="logo__info">
                 <span class="logo__title">AUTHYNTIC</span>
@@ -37,7 +40,7 @@
             <a href="about.html">About</a>
             <a href="use-cases.html">Use Cases</a>
             <a href="contact.html">Contact</a>
-            <a href="demo.html" data-requires-auth="true" data-auth-role="operator" data-auth-visibility="hide" data-auth-message="Secure operator consoles require an authenticated Authyntic session." data-auth-denied="Operator demo access is restricted to mission-authorized roles.">Operator Demo</a>
+            <a href="demo.html" data-requires-auth="true" data-auth-role="operator" data-auth-visibility="hide" data-auth-message="Demo access is restricted to authorized Authyntic representatives." data-auth-denied="Operator demo access is restricted to mission-authorized roles.">Rep Demo</a>
         </nav>
         <div class="top-bar__actions">
             <button type="button" class="theme-toggle" data-theme-toggle aria-pressed="false">
@@ -45,7 +48,7 @@
                 <span class="theme-toggle__icon theme-toggle__icon--sun" aria-hidden="true">☀</span>
                 <span class="sr-only">Toggle color theme</span>
             </button>
-            <button type="button" class="nav-auth-link nav-auth-link--login" data-auth="login" data-auth-target="/pages/login.html">Operator Login</button>
+            <button type="button" class="nav-auth-link nav-auth-link--login" data-auth="login" data-auth-target="/pages/login.html">Rep Login</button>
             <button type="button" class="nav-auth-link nav-auth-link--logout" data-auth="logout" hidden>Logout</button>
             <div class="auth-indicator" data-auth-status hidden>
                 <span class="auth-indicator__label">Operator</span>
@@ -60,15 +63,18 @@
             <div class="container">
                 <div class="hero__grid">
                     <div class="hero__content">
-                        <p class="eyebrow">Engineering Foundation</p>
-                        <h1 class="hero__title">The Authyntic Integrity Stack</h1>
+                        <p class="eyebrow">Technology Overview</p>
+                        <h1 class="hero__title">Authentication Technology Stack</h1>
                         <p class="hero__lead">
-                            Built for contested information environments, our stack combines hardware-rooted cryptography, autonomous threat discovery, and resilient orchestration so commanders and analysts can trust every frame and file.
+                            Built on proven cryptographic standards and secure architectures, our platform provides robust verification and chain-of-custody capabilities for digital media authentication.
                         </p>
                     </div>
                     <div class="hero__preview">
                         <div class="hero-image">
-                            <img src="../assets/technology-hero.png" alt="Authyntic Technology" width="1600" height="900" loading="eager" decoding="async" fetchpriority="high" onerror="this.src='../assets/HeroImage.png'">
+                            <picture>
+                                <source srcset="../assets/HeroImage.webp" type="image/webp">
+                                <img src="../assets/HeroImage.png" alt="Authyntic Technology" width="1600" height="900" loading="eager" decoding="async" fetchpriority="high">
+                            </picture>
                         </div>
                     </div>
                 </div>

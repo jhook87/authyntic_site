@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Authyntic | Secure Operator Login</title>
-  <meta name="description" content="Restricted operator access portal for Authyntic's secure demonstration environment.">
+  <title>Authyntic | Representative Login</title>
+  <meta name="description" content="Secure login portal for authorized Authyntic representatives to access demonstration environment.">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' https://fonts.googleapis.com 'unsafe-inline'; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; script-src 'self'; connect-src 'self'; form-action 'self'; frame-ancestors 'none';">
   <meta http-equiv="X-Frame-Options" content="DENY">
   <meta http-equiv="Referrer-Policy" content="no-referrer">
@@ -25,15 +25,14 @@
   <a href="#main" class="skip-link">Skip to main content</a>
   <div class="page__backdrop" aria-hidden="true"></div>
   <header class="top-bar" data-component="global-header">
-    <a href="../index.html" class="logo">
-      <span class="logo__mark" aria-hidden="true">
-        <img src="../assets/blackonblackLogo.png" alt="Authyntic Logo" class="logo-image">
-      </span>
-      <div class="logo__info">
+          <a href="../index.html" class="logo" aria-label="Authyntic Home">
+        <picture>
+          <source srcset="../assets/blackonblackLogo.webp" type="image/webp">
+          <img src="../assets/blackonblackLogo.png" alt="Authyntic Logo" class="logo-image" width="64" height="64" loading="eager" decoding="async">
+        </picture>
         <span class="logo__title">AUTHYNTIC</span>
-        <span class="logo__tag">Defense Systems</span>
-      </div>
-    </a>
+      </a>
+
     <button class="mobile-menu-toggle" aria-label="Toggle navigation" aria-expanded="false">
       <span class="bar"></span>
       <span class="bar"></span>
@@ -48,7 +47,7 @@
       <a href="about.html">About</a>
       <a href="contact.html">Contact</a>
       <a href="login.html" class="nav-auth-link active" data-auth="login">Login</a>
-      <a href="demo.html" data-requires-auth="true" data-auth-role="operator" data-auth-visibility="hide" data-auth-message="Secure operator consoles require an authenticated Authyntic session." data-auth-denied="Operator demo access is restricted to mission-authorized roles.">Operator Demo</a>
+      <a href="demo.html" data-requires-auth="true" data-auth-role="operator" data-auth-visibility="hide" data-auth-message="Demo access is restricted to authorized Authyntic representatives." data-auth-denied="Operator demo access is restricted to mission-authorized roles.">Rep Demo</a>
     </nav>
     <div class="top-bar__actions">
       <button type="button" class="theme-toggle" data-theme-toggle aria-pressed="false">
@@ -56,7 +55,7 @@
         <span class="theme-toggle__icon theme-toggle__icon--sun" aria-hidden="true">☀</span>
         <span class="sr-only">Toggle color theme</span>
       </button>
-      <button type="button" class="nav-auth-link nav-auth-link--login" data-auth="login" data-auth-target="/pages/login.html">Operator Login</button>
+      <button type="button" class="nav-auth-link nav-auth-link--login" data-auth="login" data-auth-target="/pages/login.html">Rep Login</button>
       <button type="button" class="nav-auth-link nav-auth-link--logout" data-auth="logout" hidden>Logout</button>
       <div class="auth-indicator" data-auth-status hidden>
         <span class="auth-indicator__label">Operator</span>
@@ -74,9 +73,9 @@
     <section class="auth-wrapper" data-auth-wrapper>
       <div class="auth-card" role="form">
         <header class="auth-card__header">
-          <p class="eyebrow">Restricted Access</p>
-          <h1 id="login-title">Secure Operator Login</h1>
-          <p class="auth-card__subtitle">Mission demo access is limited to authorized Authyntic operators.</p>
+          <p class="eyebrow">Representative Access</p>
+          <h1 id="login-title">Representative Login</h1>
+          <p class="auth-card__subtitle">Demo access is restricted to authorized Authyntic representatives.</p>
         </header>
 
         <div class="alert alert--info" data-auth-flash hidden role="status" aria-live="polite"></div>
