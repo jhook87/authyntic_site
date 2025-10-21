@@ -4,13 +4,16 @@
 from __future__ import annotations
 
 import collections
+import fnmatch
 import hashlib
 import hmac
 import http.server
 import json
 import logging
+import mimetypes
 import os
 import secrets
+import shutil
 import socketserver
 import time
 from http import cookies
@@ -27,7 +30,7 @@ RATE_LIMIT_WINDOW_SECONDS = int(os.environ.get('AUTHYNTIC_RATE_LIMIT_WINDOW', '1
 
 ALLOWED_ORIGINS = {
     origin.strip()
-    for origin in os.environ.get('AUTHYNTIC_ALLOWED_ORIGINS', 'http://localhost:8000').split(',')
+    for origin in os.environ.get('AUTHYNTIC_ALLOWED_ORIGINS', 'http://localhost:8000,http://localhost:*,https://*.app.github.dev').split(',')
     if origin.strip()
 }
 DEFAULT_ALLOWED_ORIGIN = next(iter(ALLOWED_ORIGINS), 'http://localhost:8000')
@@ -95,7 +98,7 @@ class SecureHTTPRequestHandler(http.server.SimpleHTTPRequestHandler):
 
     def end_headers(self) -> None:  # type: ignore[override]
         origin = self.headers.get('Origin')
-        allowed_origin = origin if origin in ALLOWED_ORIGINS else DEFAULT_ALLOWED_ORIGIN
+        allowed_origin = self._get_allowed_origin(origin)
         self.send_header('Access-Control-Allow-Origin', allowed_origin)
         self.send_header('Vary', 'Origin')
         self.send_header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS')
@@ -110,6 +113,23 @@ class SecureHTTPRequestHandler(http.server.SimpleHTTPRequestHandler):
         self.send_header('Permissions-Policy', 'interest-cohort=()')
         self.send_header('Strict-Transport-Security', 'max-age=63072000; includeSubDomains')
         super().end_headers()
+
+    def _get_allowed_origin(self, origin: str | None) -> str:  # type: ignore[name-defined]
+        """Check if origin matches allowed patterns (including wildcards)."""
+        if not origin:
+            return DEFAULT_ALLOWED_ORIGIN
+        
+        # Direct match
+        if origin in ALLOWED_ORIGINS:
+            return origin
+        
+        # Wildcard pattern matching
+        for allowed in ALLOWED_ORIGINS:
+            if '*' in allowed:
+                if fnmatch.fnmatch(origin, allowed):
+                    return origin
+        
+        return DEFAULT_ALLOWED_ORIGIN
 
     def do_OPTIONS(self) -> None:  # type: ignore[override]
         self.send_response(204)
@@ -230,9 +250,27 @@ class SecureHTTPRequestHandler(http.server.SimpleHTTPRequestHandler):
         self.wfile.write(body)
 
     def guess_type(self, path: str) -> str:  # type: ignore[override]
+        # Explicit mappings for common web assets; fallback to default handler
         if path.endswith('.json'):
             return 'application/json'
+        if path.endswith('.css'):
+            return 'text/css'
+        if path.endswith('.js'):
+            return 'application/javascript'
+        if path.endswith('.ico'):
+            return 'image/x-icon'
+        if path.endswith('.png'):
+            return 'image/png'
         return super().guess_type(path)
+
+    def copyfile(self, source, outputfile) -> None:  # type: ignore[no-untyped-def]
+        """Override copyfile to handle BrokenPipeError gracefully."""
+        try:
+            shutil.copyfileobj(source, outputfile)
+        except (BrokenPipeError, ConnectionResetError):
+            pass  # Client disconnected, silently ignore
+        except Exception:
+            raise
 
     def log_message(self, fmt: str, *args) -> None:  # type: ignore[override]
         LOGGER.info('%s - - [%s] %s', self.client_address[0], self.log_date_time_string(), fmt % args)
@@ -241,6 +279,12 @@ class SecureHTTPRequestHandler(http.server.SimpleHTTPRequestHandler):
 def main() -> None:
     logging.basicConfig(level=logging.INFO, format='[%(asctime)s] %(levelname)s %(name)s: %(message)s')
     port = int(os.environ.get('PORT', '8000'))
+    # Ensure correct MIME types for static assets
+    mimetypes.init()
+    mimetypes.add_type('text/css', '.css')
+    mimetypes.add_type('application/javascript', '.js')
+    mimetypes.add_type('image/png', '.png')
+    mimetypes.add_type('image/x-icon', '.ico')
     handler = SecureHTTPRequestHandler
 
     with socketserver.TCPServer(('', port), handler) as httpd:
