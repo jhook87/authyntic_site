@@ -1,6 +1,21 @@
 {
+	"name": "authyntic-site",
+	"version": "2.0.0",
+	"description": "Mission-Grade Media Authentication Platform",
+	"type": "module",
+	"scripts": {
+		"dev": "vite",
+		"build": "vite build",
+		"preview": "vite preview",
+		"serve": "python3 server.py"
+	},
 	"dependencies": {
 		"hardhat": "^3.0.7",
 		"toolkit": "^1.5.4"
+	},
+	"devDependencies": {
+		"@vitejs/plugin-legacy": "^7.2.1",
+		"vite": "^7.1.11",
+		"vite-plugin-html": "^3.2.2"
 	}
 }
