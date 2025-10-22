@@ -478,10 +478,19 @@ input[type="radio"] {
 /* Subtle background pulse animation */
 @keyframes background-pulse {
   0%, 100% {
-    opacity: 0.15;
+    opacity: 0.16;
   }
   50% {
-    opacity: 0.22;
+    opacity: 0.26;
+  }
+}
+
+@keyframes hero-texture-glide {
+  0%, 100% {
+    transform: translate3d(-2%, -1%, 0) scale(1.03);
+  }
+  50% {
+    transform: translate3d(2%, 1%, 0) scale(1.05);
   }
 }
 
@@ -558,12 +567,17 @@ body {
   margin: 0;
   padding: 0;
   font-family: var(--font-sans);
-  background:
-    radial-gradient(circle at 12% 18%, rgba(76, 125, 255, 0.16), transparent 55%),
-    radial-gradient(circle at 82% 12%, rgba(60, 243, 193, 0.18), transparent 48%),
-    radial-gradient(circle at 40% 86%, rgba(30, 199, 154, 0.12), transparent 58%),
-    linear-gradient(135deg, #020711 0%, #061224 48%, #04132c 100%);
-  background-attachment: fixed;
+  background-color: #05070c;
+  background-image:
+    radial-gradient(circle at 20% 18%, rgba(255, 132, 68, 0.22), transparent 58%),
+    radial-gradient(circle at 78% 26%, rgba(255, 94, 44, 0.18), transparent 62%),
+    linear-gradient(160deg, #05060d 0%, #090d19 52%, #140a12 100%),
+    url('../assets/authyntic-network-texture.svg');
+  background-size: 115% 115%, 130% 130%, cover, 1600px 1200px;
+  background-position: top left, top right, center, center;
+  background-repeat: no-repeat;
+  background-attachment: scroll, scroll, scroll, fixed;
+  background-blend-mode: screen, screen, normal, lighten;
   color: var(--color-text);
   min-height: 100vh;
   letter-spacing: 0.01em;
@@ -594,6 +608,15 @@ body[data-theme="light"] .top-bar {
 body[data-theme="light"] .page__backdrop {
   opacity: 0.45;
   background: linear-gradient(140deg, rgba(217, 229, 255, 0.85), rgba(204, 244, 236, 0.8));
+}
+
+body[data-theme="light"] .page__backdrop::before {
+  opacity: 0.12;
+  mix-blend-mode: multiply;
+}
+
+body[data-theme="light"] .page__backdrop::after {
+  opacity: 0.18;
 }
 
 body[data-theme="light"] .cta-link,
@@ -630,28 +653,47 @@ h1 {
   position: fixed;
   inset: 0;
   pointer-events: none;
-  background:
-    radial-gradient(circle at 12% 22%, rgba(76, 125, 255, 0.2), transparent 62%),
-    radial-gradient(circle at 80% 18%, rgba(60, 243, 193, 0.16), transparent 60%),
-    linear-gradient(160deg, rgba(4, 19, 44, 0.92), rgba(2, 10, 26, 0.92));
-  background-size: cover;
-  opacity: 0.75;
+  background-color: rgba(6, 8, 16, 0.96);
+  background-image:
+    radial-gradient(circle at 16% 28%, rgba(255, 142, 72, 0.32), transparent 65%),
+    radial-gradient(circle at 84% 22%, rgba(255, 102, 50, 0.24), transparent 60%),
+    linear-gradient(160deg, rgba(8, 11, 20, 0.94), rgba(4, 6, 12, 0.94));
+  background-size: 140% 140%, 180% 180%, cover;
+  background-position: top left, top right, center;
+  background-repeat: no-repeat;
+  background-blend-mode: screen, screen, normal;
+  opacity: 0.78;
   z-index: -1;
   height: 100vh;
   width: 100vw;
   top: 0;
   left: 0;
+  overflow: hidden;
+}
+
+.page__backdrop::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('../assets/authyntic-network-texture.svg');
+  background-size: 160% auto;
+  background-position: center top;
+  background-repeat: no-repeat;
+  opacity: 0.32;
+  mix-blend-mode: lighten;
+  transform: translate3d(0, 0, 0);
+  will-change: opacity;
 }
 
 .page__backdrop::after {
   content: '';
   position: absolute;
   inset: 0;
-  opacity: 0.35;
+  opacity: 0.28;
   background-image:
-    linear-gradient(120deg, rgba(255, 255, 255, 0.05) 0, transparent 4%),
-    linear-gradient(300deg, rgba(255, 255, 255, 0.04) 0, transparent 5%);
-  background-size: 180px 180px, 140px 140px;
+    linear-gradient(120deg, rgba(255, 208, 150, 0.08) 0, transparent 6%),
+    linear-gradient(300deg, rgba(255, 126, 74, 0.06) 0, transparent 8%);
+  background-size: 200px 200px, 160px 160px;
   mix-blend-mode: screen;
 }
 
@@ -1068,15 +1110,74 @@ button.nav-auth-link:focus-visible {
   margin: 0 auto clamp(40px, 6vw, 64px);
 }
 
+.hero {
+  position: relative;
+  isolation: isolate;
+  padding: clamp(80px, 12vw, 120px) 0 clamp(60px, 10vw, 100px);
+  --hero-texture-size: 140% auto;
+  --hero-texture-opacity: 0.22;
+  --hero-texture-animation: hero-texture-glide 18s ease-in-out infinite;
+}
+
 .hero::before {
   content: '';
   position: absolute;
   inset: 0;
-  background: 
-    radial-gradient(circle at 18% 24%, rgba(76, 125, 255, 0.24), transparent 55%),
-    radial-gradient(circle at 78% 18%, rgba(60, 243, 193, 0.2), transparent 60%),
-    linear-gradient(160deg, rgba(5, 18, 38, 0.92), rgba(2, 8, 20, 0.92));
+  background:
+    radial-gradient(circle at 18% 26%, rgba(255, 138, 72, 0.3), transparent 58%),
+    radial-gradient(circle at 82% 20%, rgba(255, 90, 44, 0.24), transparent 62%),
+    linear-gradient(160deg, rgba(9, 12, 24, 0.94), rgba(12, 8, 20, 0.9));
   z-index: 0;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  inset: -6% -8%;
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(255, 176, 120, 0.22);
+  background-image:
+    linear-gradient(140deg, rgba(255, 176, 120, 0.18), transparent 60%),
+    linear-gradient(320deg, rgba(255, 120, 70, 0.16), transparent 70%),
+    url('../assets/authyntic-network-texture.svg');
+  background-size: 130% 130%, 150% 150%, var(--hero-texture-size, 140% auto);
+  background-position: center, center, center top;
+  background-repeat: no-repeat;
+  background-blend-mode: screen, screen, lighten;
+  opacity: var(--hero-texture-opacity, 0.22);
+  mix-blend-mode: lighten;
+  z-index: 0;
+  pointer-events: none;
+  transform: translate3d(0, 0, 0);
+  animation: var(--hero-texture-animation, hero-texture-glide 18s ease-in-out infinite);
+  will-change: transform, opacity;
+}
+
+.hero > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Dynamic Hero Variant */
+.hero--dynamic {
+  position: relative;
+  overflow: hidden;
+  --hero-texture-size: 150% auto;
+  --hero-texture-opacity: 0.28;
+  --hero-texture-animation: hero-texture-glide 20s ease-in-out infinite;
+}
+
+.hero--dynamic::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 18% 26%, rgba(255, 138, 72, 0.3), transparent 58%),
+    radial-gradient(circle at 82% 20%, rgba(255, 90, 44, 0.24), transparent 62%),
+    linear-gradient(160deg, rgba(9, 12, 24, 0.94), rgba(12, 8, 20, 0.9));
+  z-index: 0;
+  animation: background-pulse 12s ease-in-out infinite;
+  will-change: opacity;
 }
 
 h1,
@@ -1223,29 +1324,6 @@ p {
   color: var(--color-accent);
 }
 
-.hero {
-  position: relative;
-  isolation: isolate;
-  padding: clamp(80px, 12vw, 120px) 0 clamp(60px, 10vw, 100px);
-}
-
-/* Dynamic Hero Variant */
-.hero--dynamic {
-  position: relative;
-  overflow: hidden;
-}
-
-.hero--dynamic::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: 
-    radial-gradient(circle at 18% 24%, rgba(76, 125, 255, 0.24), transparent 55%),
-    radial-gradient(circle at 78% 18%, rgba(60, 243, 193, 0.2), transparent 60%),
-    linear-gradient(160deg, rgba(5, 18, 38, 0.92), rgba(2, 8, 20, 0.92));
-  z-index: 0;
-  animation: background-pulse 8s ease-in-out infinite;
-}
 
 .hero__security-indicators {
   display: flex;
@@ -1305,18 +1383,6 @@ p {
     radial-gradient(circle at 80% 15%, rgba(76, 125, 255, 0.18), transparent 60%);
   opacity: 0.9;
   pointer-events: none;
-}
-
-.hero::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: var(--radius-lg);
-  border: 1px solid rgba(76, 125, 255, 0.22);
-  background: linear-gradient(140deg, rgba(76, 125, 255, 0.08), transparent 60%),
-    linear-gradient(320deg, rgba(60, 243, 193, 0.08), transparent 70%);
-  pointer-events: none;
-  z-index: -1;
 }
 
 .hero__grid {
