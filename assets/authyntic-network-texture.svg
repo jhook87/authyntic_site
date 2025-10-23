@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2400" height="1600" viewBox="0 0 2400 1600">
+  <defs>
+    <radialGradient id="glow-orange" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ffe1c4" stop-opacity="0.96"/>
+      <stop offset="45%" stop-color="#ffb37d" stop-opacity="0.72"/>
+      <stop offset="100%" stop-color="#ff6b2c" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glow-ember" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ffd8a8" stop-opacity="0.98"/>
+      <stop offset="35%" stop-color="#ff9357" stop-opacity="0.7"/>
+      <stop offset="100%" stop-color="#ff4f1f" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="link-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="rgba(255,136,64,0.08)"/>
+      <stop offset="50%" stop-color="rgba(255,158,86,0.4)"/>
+      <stop offset="100%" stop-color="rgba(255,116,48,0.12)"/>
+    </linearGradient>
+    <filter id="node-glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="12" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <rect width="2400" height="1600" fill="#090b10"/>
+  <g stroke="url(#link-gradient)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M200 260 L620 440 L1020 220 L1440 420 L1900 240" opacity="0.5"/>
+    <path d="M320 900 L740 620 L1150 900 L1520 640 L1960 860" opacity="0.36"/>
+    <path d="M200 1180 L580 980 L960 1260 L1380 1040 L1820 1200" opacity="0.32"/>
+    <path d="M400 360 L360 760 L780 520 L1220 700 L1620 520 L2060 760" opacity="0.28"/>
+    <path d="M540 260 L960 520 L1380 320 L1740 560" opacity="0.45"/>
+  </g>
+  <g fill="#ffb98b" stroke="#ffe7cf" stroke-width="6" filter="url(#node-glow)">
+    <circle cx="200" cy="260" r="18" fill="url(#glow-orange)"/>
+    <circle cx="620" cy="440" r="20" fill="url(#glow-orange)"/>
+    <circle cx="1020" cy="220" r="16" fill="url(#glow-ember)"/>
+    <circle cx="1440" cy="420" r="22" fill="url(#glow-orange)"/>
+    <circle cx="1900" cy="240" r="20" fill="url(#glow-ember)"/>
+    <circle cx="320" cy="900" r="18" fill="url(#glow-ember)"/>
+    <circle cx="740" cy="620" r="24" fill="url(#glow-orange)"/>
+    <circle cx="1150" cy="900" r="19" fill="url(#glow-ember)"/>
+    <circle cx="1520" cy="640" r="17" fill="url(#glow-orange)"/>
+    <circle cx="1960" cy="860" r="21" fill="url(#glow-ember)"/>
+    <circle cx="200" cy="1180" r="18" fill="url(#glow-ember)"/>
+    <circle cx="580" cy="980" r="22" fill="url(#glow-orange)"/>
+    <circle cx="960" cy="1260" r="17" fill="url(#glow-orange)"/>
+    <circle cx="1380" cy="1040" r="21" fill="url(#glow-ember)"/>
+    <circle cx="1820" cy="1200" r="20" fill="url(#glow-orange)"/>
+    <circle cx="400" cy="360" r="16" fill="url(#glow-ember)"/>
+    <circle cx="360" cy="760" r="22" fill="url(#glow-orange)"/>
+    <circle cx="780" cy="520" r="20" fill="url(#glow-ember)"/>
+    <circle cx="1220" cy="700" r="18" fill="url(#glow-orange)"/>
+    <circle cx="1620" cy="520" r="19" fill="url(#glow-ember)"/>
+    <circle cx="2060" cy="760" r="23" fill="url(#glow-orange)"/>
+    <circle cx="540" cy="260" r="16" fill="url(#glow-orange)"/>
+    <circle cx="960" cy="520" r="17" fill="url(#glow-ember)"/>
+    <circle cx="1380" cy="320" r="20" fill="url(#glow-orange)"/>
+    <circle cx="1740" cy="560" r="18" fill="url(#glow-ember)"/>
+  </g>
+</svg>
