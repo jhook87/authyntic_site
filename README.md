@@ -80,8 +80,10 @@ The site features a world-class, security-first design system:
 - Vertical rhythm system with 1.5 line height
 
 ### Color System
-- **Primary Accent:** #3cf3c1 (Cyan) for trust and security
-- **Secondary Accent:** #4c7dff for highlights
+- **Primary Accent:** #FF6B3D burnt orange for trust and key actions
+- **Secondary Accent:** #F2471D ember tone for hovers and active states
+- **Depth Accent:** #3A120A for glows, borders, and low-light contrast
+- **Highlight Accent:** #FF915E for informational emphasis
 - **Dark Background:** #020711 with gradient variations
 - **Security States:** 5 distinct visual states (critical, warning, success, info, neutral)
 - **Trust Indicators:** Visual levels for progressive disclosure

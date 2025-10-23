@@ -18,12 +18,12 @@ The design system exceeds WCAG AAA standards, supporting multiple interaction me
 ## Color System
 
 ### Security State Colors
-Designed using color psychology principles to convey appropriate urgency without panic:
+Designed using color psychology principles to convey appropriate urgency without panic. The refreshed palette leans on a burnt-orange gradient (\#FF6B3D → \#F2471D → \#3A120A) to maintain warmth while preserving contrast in both light and dark themes:
 
 - **Critical:** `#ff4560` - Security breaches, failed authentications
 - **Warning:** `#ffc456` - Elevated risk, session expiring
-- **Success:** `#3cf3c1` - Authenticated, verified, trusted
-- **Info:** `#4c7dff` - Informational messages, system status
+- **Success:** `#ff6b3d` - Authenticated, verified, trusted
+- **Info:** `#ff915e` - Informational messages, system status
 - **Neutral:** `#7a8cab` - Inactive states, pending processes
 
 ## Component Library
